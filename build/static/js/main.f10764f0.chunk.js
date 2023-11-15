@@ -1,2 +1,0 @@
-(this["webpackJsonpstudents-event-handling-in-react-forked"]=this["webpackJsonpstudents-event-handling-in-react-forked"]||[]).push([[0],{3:function(e,n,t){e.exports=t(9)},9:function(e,n,t){"use strict";t.r(n);var r=t(0),a=t.n(r),c=t(2);var l=function(){return a.a.createElement("div",{className:"container"},a.a.createElement("h1",null,"Hello World"))};t.n(c).a.render(a.a.createElement(l,null),document.getElementById("root"))}},[[3,1,2]]]);
-//# sourceMappingURL=main.f10764f0.chunk.js.map
