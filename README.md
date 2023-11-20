@@ -25,3 +25,4 @@ Open Terminal and navigate to project root directory.
 
 ### RUN SERVER!!!
 ```python server.py```
+You can access backend API locally using "http://127.0.0.1:5000"
