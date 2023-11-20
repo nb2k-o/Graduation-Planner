@@ -7,7 +7,7 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
-import LoginPage from "./LoginPage.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
 
 function App() {
   return (
