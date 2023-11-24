@@ -11,29 +11,42 @@ app = Flask(__name__)
 
 @app.route('/signup', methods=["POST"])
 def signup():
-    name = request.form.get("name", None)
-    major = request.form.get("major", None)
-    grad_year = request.form.get("grad_year", None)
-    school = request.form.get("school", None)
-    email = request.form.get("email", None)
-    password = request.form.get("password", None)
+    payload = request.get_json()
 
-    user_collection.insert_one({"name":name, "major":major, "grad_year":grad_year, "school":school, "email":email, "password":password})
+    name = payload["name"]
+    major = payload["major"]
+    grad_year = payload["grad_year"]
+    school = payload["school"]
+    email = payload["email"]
+    password = payload["password"]
 
+    try:
+        user = user_collection.find_one({"email":email})
 
-    return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
+        if user:
+            return json.dumps({'error':"user already exists"}), 200, {'ContentType':'application/json'} 
+
+        user_collection.insert_one({"name":name, "major":major, "grad_year":grad_year, "school":school, "email":email, "password":password})
+        return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
+
+    except Exception as e:
+        return json.dumps({'error': str(e)})
+
 
 @app.route('/login', methods=["POST"])
 def login():
-    email = request.form.get("email", None)
-    password = request.form.get("password", None)
+    payload = request.get_json()
+    
+    email = payload["email"]
+    password = payload["password"]
 
     user = user_collection.find_one({"email":email})
+
     if user:
         if user["password"] == password:
             return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
-    return json.dumps({'error':"No username with corresponding password."}), 400, {'ContentType':'application/json'} 
+    return json.dumps({'error':"No user with corresponding password."}), 200, {'ContentType':'application/json'} 
 
      
 # Running app

@@ -32,17 +32,17 @@ body {
   flex-shrink: 0;
 }
 
-.loginBox {
+.blueBox {
   margin: 5% auto;
   padding: 80px 110px;
   width: 833px;
-  height: 619px;
+
   flex-shrink: 0;
   text-align: left;
   background: #e3f0ff;
 }
 
-.loginBox h2 {
+.blueBox h2 {
   color: #000;
   font-family: Noto Serif;
   font-size: 30px;
@@ -52,14 +52,30 @@ body {
   margin-bottom: 75px;
 }
 
-.loginBox form {
+.blueBox form {
   text-align: left;
   color: black;
   font-size: 22px;
 }
 
-.loginBox input {
+.blueBox input {
   border: 1px solid rgba(252, 252, 252, 0.4);
+  background-color: white;
+  width: 400px;
+  height: 40px;
+  border-radius: 3px;
+  font-family: "Source Sans Pro", sans-serif;
+  padding: 10px 15px;
+  margin-bottom: 75px;
+  display: block;
+  text-align: left;
+  font-size: 22px;
+  font-weight: 300;
+  overflow: hidden;
+}
+
+.blueBox select {
+  border: none;
   background-color: white;
   width: 400px;
   height: 40px;
@@ -74,7 +90,7 @@ body {
   overflow: hidden;
 }
 
-.loginBox button {
+.blueBox button {
   appearance: none;
   outline: 0;
   background-color: #a2cbea;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -8,6 +8,7 @@ import {
   Redirect
 } from "react-router-dom";
 import LoginPage from "./pages/LoginPage.jsx";
+import SignUpPage from "./pages/SignUpPage.jsx";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<LoginPage />} />
+          <Route exact path="/signup" element={<SignUpPage />} />
         </Routes>
       </Router>
     </div>
