@@ -42,11 +42,15 @@ def login():
 
     user = user_collection.find_one({"email":email})
 
-    if user:
-        if user["password"] == password:
-            return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
+    try:
+        if user:
+            if user["password"] == password:
+                return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
 
-    return json.dumps({'error':"No user with corresponding password."}), 200, {'ContentType':'application/json'} 
+        return json.dumps({'error':"No user with corresponding password."}), 200, {'ContentType':'application/json'} 
+    
+    except Exception as e:
+        return json.dumps({'error': str(e)})
 
      
 # Running app
