@@ -1,11 +1,16 @@
 from flask import Flask, request
 import json
 from pymongo.mongo_client import MongoClient
+from utils import serialize_object_response, serialize_cursor_response
+
 
 
 uri = "mongodb+srv://root:admin@cluster0.j76mx.mongodb.net/?retryWrites=true&w=majority"
 client = MongoClient(uri)
 user_collection = client.get_database("GraduationPlanner").get_collection("User")
+plan_collection = client.get_database("GraduationPlanner").get_collection("Plan")
+comment_collection = client.get_database("GraduationPlanner").get_collection("Comment")
+
 
 app = Flask(__name__)
 
@@ -51,6 +56,20 @@ def login():
     
     except Exception as e:
         return json.dumps({'error': str(e)})
+
+@app.route('/user_profile', methods=["GET"])
+def user_profile():
+    email = request.args['email']
+    user = serialize_object_response(user_collection.find_one({"email":email}))
+
+    return json.dumps({'success':True, 'data': user}), 200, {'ContentType':'application/json'}
+
+@app.route('/created_plans', methods=["GET"])
+def created_plans():
+    email = request.args['email']
+    data = serialize_cursor_response(plan_collection.find({"author_email":email}))
+
+    return json.dumps({'success':True, 'data': data}), 200, {'ContentType':'application/json'}
 
      
 # Running app
