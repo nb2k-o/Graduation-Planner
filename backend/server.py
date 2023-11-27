@@ -20,6 +20,7 @@ app = Flask(__name__)
 
 ##AUTHENTICATION
 
+
 @app.route("/signup", methods=["POST"])
 def signup():
     payload = request.get_json()
@@ -69,14 +70,24 @@ def login():
     try:
         if user:
             if user["password"] == password:
-                return json.dumps({'success':True}), 200, {'ContentType':'application/json'} 
+                return (
+                    json.dumps({"success": True}),
+                    200,
+                    {"ContentType": "application/json"},
+                )
 
-        return json.dumps({'error':"No user with corresponding password."}), 200, {'ContentType':'application/json'} 
-    
+        return (
+            json.dumps({"error": "No user with corresponding password."}),
+            200,
+            {"ContentType": "application/json"},
+        )
+
     except Exception as e:
-        return json.dumps({'error': str(e)})
+        return json.dumps({"error": str(e)})
+
 
 ##PROFILE
+
 
 @app.route("/user_profile", methods=["GET"])
 def user_profile():
@@ -122,7 +133,8 @@ def liked_plans():
     )
 
 
-##PLANS: to be tested (currently untested)
+##PLANS
+
 
 @app.route("/make_plan", methods=["POST"])
 def make_plan():
@@ -139,36 +151,41 @@ def make_plan():
     tags = payload["tags"]
 
     plan_collection.insert_one(
-    {
-        "timestamp": timestamp,
-        "title": title,
-        "school": school,
-        "major": major,
-        "semesters": semesters,
-        "description": description,
-        "author_name": author_name,
-        "author_email": author_email,
-        "tags": tags,
-        "likes": 0,
-        "comments": 0,
-    })
+        {
+            "timestamp": timestamp,
+            "title": title,
+            "school": school,
+            "major": major,
+            "semesters": semesters,
+            "description": description,
+            "author_name": author_name,
+            "author_email": author_email,
+            "tags": tags,
+            "likes": 0,
+            "comments": 0,
+        }
+    )
 
     return json.dumps({"success": True}), 200, {"ContentType": "application/json"}
+
 
 @app.route("/get_plan", methods=["GET"])
 def get_plan():
     email = request.args["email"]
     plan_id = request.args["plan_id"]
-    plan = serialize_object_response(plan_collection.find_one({"_id": ObjectId(plan_id)}))
+    plan = serialize_object_response(
+        plan_collection.find_one({"_id": ObjectId(plan_id)})
+    )
     plan["liked"] = False
-    if liked_plan_collection.find_one({"liker_email":email, "plan_id":plan_id}):
-        plan["liked"]  = True
+    if liked_plan_collection.find_one({"liker_email": email, "plan_id": plan_id}):
+        plan["liked"] = True
 
     return (
         json.dumps({"success": True, "data": plan}),
         200,
         {"ContentType": "application/json"},
     )
+
 
 @app.route("/toggle_like_plan", methods=["POST"])
 def toggle_like_plan():
@@ -177,26 +194,28 @@ def toggle_like_plan():
     email = payload["email"]
     plan_id = payload["plan_id"]
 
-
     liked = liked_plan_collection.find_one(
-    {
-        "plan_id": plan_id,
-        "liker_email": email,
-    })
-
-    if liked:
-        liked_plan_collection.find_one_and_delete(
         {
             "plan_id": plan_id,
             "liker_email": email,
-        })
+        }
+    )
+
+    if liked:
+        liked_plan_collection.find_one_and_delete(
+            {
+                "plan_id": plan_id,
+                "liker_email": email,
+            }
+        )
     else:
         liked_plan_collection.insert_one(
             {
                 "plan_id": plan_id,
                 "liker_email": email,
-            })
-    
+            }
+        )
+
     return json.dumps({"success": True}), 200, {"ContentType": "application/json"}
 
 
@@ -209,15 +228,22 @@ def comment_plan():
     text = payload["text"]
 
     comment_collection.insert_one(
-            {
-                "plan_id": plan_id,
-                "author_email": email,
-                "text": text
-            })
-    
+        {"plan_id": plan_id, "author_email": email, "text": text}
+    )
+
     return json.dumps({"success": True}), 200, {"ContentType": "application/json"}
 
 
+@app.route("/get_comments", methods=["GET"])
+def get_comments():
+    email = request.args["plan_id"]
+    data = serialize_cursor_response(comment_collection.find({"plan_id": email}))
+
+    return (
+        json.dumps({"success": True, "data": data}),
+        200,
+        {"ContentType": "application/json"},
+    )
 
 
 # Running app
