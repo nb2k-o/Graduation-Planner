@@ -1,5 +1,6 @@
 from flask import Flask, request
 import json
+import re
 import time
 from pymongo.mongo_client import MongoClient
 from bson.objectid import ObjectId
@@ -273,6 +274,37 @@ def secondary_suggested_plans():
 
     return (
         json.dumps({"success": True, "data": response_data}),
+        200,
+        {"ContentType": "application/json"},
+    )
+
+## SEARCH
+@app.route("/search_plans", methods=["GET"])
+def search_plans():
+    regex_term = {"$regex" : request.args["query_term"], "$options": 'i'}
+    sort_by = request.args.get("sort_by", "popular")
+    school_filter = request.args.get("school_filter", None)
+    major_filter = request.args.get("major_filter", None)
+    print(school_filter, major_filter)
+
+    if school_filter and major_filter:
+        mongo_query = {"$or":[{"title": regex_term}, {"school": school_filter}, {"major": major_filter}, {"description": regex_term}, {"author_name": regex_term}, {"tags": regex_term}]}
+    elif school_filter:
+        mongo_query = {"$or":[{"title": regex_term}, {"school": school_filter}, {"major": regex_term}, {"description": regex_term}, {"author_name": regex_term}, {"tags": regex_term}]}
+    elif major_filter:
+        mongo_query = {"$or":[{"title": regex_term}, {"school": regex_term}, {"major": major_filter}, {"description": regex_term}, {"author_name": regex_term}, {"tags": regex_term}]}
+    else:
+        mongo_query = {"$or":[{"title": regex_term}, {"school": regex_term}, {"major": regex_term}, {"description": regex_term}, {"author_name": regex_term}, {"tags": regex_term}]}
+    
+    if sort_by == "date_added_new":
+        data = serialize_cursor_response(plan_collection.find(mongo_query).sort([("timestamp",-1)]))
+    elif sort_by == "date_added_old":
+        data = serialize_cursor_response(plan_collection.find(mongo_query).sort([("timestamp",-1)]))
+    else:
+        data = serialize_cursor_response(plan_collection.find(mongo_query).sort([("popular",-1)]))
+
+    return (
+        json.dumps({"success": True, "data": data}),
         200,
         {"ContentType": "application/json"},
     )
