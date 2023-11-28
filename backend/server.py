@@ -245,6 +245,37 @@ def get_comments():
         {"ContentType": "application/json"},
     )
 
+##HOMEPAGE ENDPOINTS
+
+@app.route("/primary_suggested_plans", methods=["GET"])
+def primary_suggested_plans():
+    email = request.args["email"]
+    response_data = {}
+    user = serialize_object_response(user_collection.find_one({"email": email}))
+    response_data["plan_type"] = user["major"]
+    data = serialize_cursor_response(plan_collection.find({"major": user["major"]}))
+    response_data["plans"] = data
+
+    return (
+        json.dumps({"success": True, "data": response_data}),
+        200,
+        {"ContentType": "application/json"},
+    )
+
+@app.route("/secondary_suggested_plans", methods=["GET"])
+def secondary_suggested_plans():
+    email = request.args["email"]
+    response_data = {}
+    user = serialize_object_response(user_collection.find_one({"email": email}))
+    response_data["plan_type"] = user["school"]
+    data = serialize_cursor_response(plan_collection.find({"school": user["school"]}))
+    response_data["plans"] = data
+
+    return (
+        json.dumps({"success": True, "data": response_data}),
+        200,
+        {"ContentType": "application/json"},
+    )
 
 # Running app
 if __name__ == "__main__":
