@@ -32,10 +32,9 @@
     	margin-top: 0;
     	
     	
-    	background-image: url("/search.png");
+    	background-image: url("icons/search.png");
     	
     	text-indent: 20px;
-    	font-family: "georgia";
     	
     }
     button {
@@ -51,7 +50,6 @@
     	float: right;
     	position: relative;
     	right: 30px;
-    	font-family: "georgia";
     	font-size: 13;
     	font-weight: bold;
     	
@@ -85,7 +83,7 @@
     }
     
     p#title{
-    	font-size: 20;
+    	font-size: 25;
     	font-weight: bold;
     	text-align: center;
     	padding-bottom: 20;
@@ -151,12 +149,16 @@
     	width: 200px;
     	border-collapse: collapse;
     	table-layout: fixed;
+    	
+    	display: inline;
+    	margin-top:0px;
     }
     
     th {
     	background-color: #005CA1; 
     	color: #FFFFFF;
     	font-weight: normal;
+    	height:20px;
     }
     td {
     	border: 1px solid;
@@ -177,16 +179,38 @@
         word-break: break-all;
     }
     
+    button#plus {
+    	
+    	float: right; 
+    	
+    	margin-right: 30;
+    }
+    img#plus{
+    	height:40;
+    	width:40
+    }
+    
+    
+    button#submit {
+    	background-color: #005CA1; 
+    	color: #FFFFFF; 
+    	width: 150;
+    	height: 30;
+    	float: left;
+    	margin-left: 30;
+    }
+    
+    
     
     </style>
 </head>
 
 <body>
   <div id="banner">
-    <div id="banner-content">
-    	<span class="img"<>
-    		<button type = "button" id = "dropdown"><img src= dropdown.png></button>
-    		<button type = "button" id = "logo"><img src= logo.png></button>
+    <div id="banner-content"> 
+    	<span class="img">
+    		<button type = "button" id = "dropdown"><img src= "icons/dropdown.png"></button>
+    		<button type = "button" id = "logo"><img src= "icons/logo.png"></button>
     	</span>
     	
     	<input id = "search" type="text" placeholder="Search..">
@@ -261,7 +285,7 @@
     	</div>
     	<br>
     	<br>
-    	
+    	<div id="tableline">
     	<table>
   			<tr>
     			<th>Class</th>
@@ -288,6 +312,17 @@
     			<td><input type="text" id="table-entry"/></td> 
   			</tr>
 		</table>
+		
+		<button type = "button" id = "plus"><img id="plus" src= "icons/plusicon.png"></button>
+		</div>
+		
+		<br>
+		<br>
+		<br>
+		<br>
+		<div>
+			<button type = "submit" id = "submit">Submit</button>
+		</div>
     </div>
   </div>
 </body>
