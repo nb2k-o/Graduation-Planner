@@ -350,12 +350,21 @@ h5 {
   margin-right: -650px;
 }
 
-/**.images {
-  display: inline-block;
-  width: 30px;
-  margin-right: 10px;
-  margin-bottom: 50px;
-} **/
+.counts{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.count {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-size: 24px;
+  margin-bottom: 10px;
+  margin-left: 5px;
+}
+
 
 .images {
   margin-bottom: 10px;
@@ -530,6 +539,7 @@ td {
   align-items: center;
   vertical-align: bottom;
 }
+
 .comment-bar-container {
   display: flex;
   margin-left: 30px;
