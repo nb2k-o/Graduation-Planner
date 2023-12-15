@@ -5,6 +5,7 @@ import time
 from pymongo.mongo_client import MongoClient
 from bson.objectid import ObjectId
 from utils import serialize_object_response, serialize_cursor_response
+from flask_cors import CORS, cross_origin
 
 
 uri = "mongodb+srv://root:admin@cluster0.j76mx.mongodb.net/?retryWrites=true&w=majority"
@@ -18,11 +19,13 @@ liked_plan_collection = client.get_database("GraduationPlanner").get_collection(
 
 
 app = Flask(__name__)
-
+cors = CORS(app, resources={r"/foo": {"origins": "*"}})
+app.config['CORS_HEADERS'] = 'Content-Type'
 ##AUTHENTICATION
 
 
 @app.route("/signup", methods=["POST"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def signup():
     payload = request.get_json()
 
@@ -60,6 +63,7 @@ def signup():
 
 
 @app.route("/login", methods=["POST"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def login():
     payload = request.get_json()
 
@@ -90,7 +94,8 @@ def login():
 ##PROFILE
 
 
-@app.route("/user_profile", methods=["GET"])
+@app.route("/user_profile", methods=["GET", "OPTIONS"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def user_profile():
     email = request.args["email"]
     user = serialize_object_response(user_collection.find_one({"email": email}))
@@ -103,6 +108,7 @@ def user_profile():
 
 
 @app.route("/created_plans", methods=["GET"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def created_plans():
     email = request.args["email"]
     data = serialize_cursor_response(plan_collection.find({"author_email": email}))
@@ -115,6 +121,7 @@ def created_plans():
 
 
 @app.route("/liked_plans", methods=["GET"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def liked_plans():
     email = request.args["email"]
     liked_plan_ids = serialize_cursor_response(
@@ -138,6 +145,7 @@ def liked_plans():
 
 
 @app.route("/make_plan", methods=["POST"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def make_plan():
     payload = request.get_json()
 
@@ -173,6 +181,7 @@ def make_plan():
 
 
 @app.route("/get_plan", methods=["GET"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def get_plan():
     email = request.args["email"]
     plan_id = request.args["plan_id"]
@@ -191,6 +200,7 @@ def get_plan():
 
 
 @app.route("/toggle_like_plan", methods=["POST"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def toggle_like_plan():
     payload = request.get_json()
 
@@ -223,6 +233,7 @@ def toggle_like_plan():
 
 
 @app.route("/comment_plan", methods=["POST"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def comment_plan():
     payload = request.get_json()
 
@@ -238,6 +249,7 @@ def comment_plan():
 
 
 @app.route("/get_comments", methods=["GET"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def get_comments():
     email = request.args["plan_id"]
     data = serialize_cursor_response(comment_collection.find({"plan_id": email}))
@@ -251,6 +263,7 @@ def get_comments():
 ##HOMEPAGE ENDPOINTS
 
 @app.route("/primary_suggested_plans", methods=["GET"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def primary_suggested_plans():
     email = request.args["email"]
     response_data = {}
@@ -266,6 +279,7 @@ def primary_suggested_plans():
     )
 
 @app.route("/secondary_suggested_plans", methods=["GET"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def secondary_suggested_plans():
     email = request.args["email"]
     response_data = {}
@@ -282,6 +296,7 @@ def secondary_suggested_plans():
 
 ## SEARCH
 @app.route("/search_plans", methods=["GET"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def search_plans():
     regex_term = {"$regex" : request.args["query_term"], "$options": 'i'}
     sort_by = request.args.get("sort_by", "popular")

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <script src="profile.js"></script>
     <title>Search Banner</title>
 </head>
+
 <body>
     <header>
         <div class="menu-button">☰</div>
@@ -17,30 +19,23 @@
         </div>
         <button class="make-plan-button">Make Plan</button>
     </header>
-    <div class = "page-top">
-        <div class="profile-title"> 
-            <h2>Nigel Kumankumah's Profile</h2> 
-        </div>
-        <div class="user-info-box"> 
-            <ul>
-                <li>CS Major</li>
-                <li>Columbia Engineering</li>
-                <li>2024</li>
-              </ul>
-            <div class="bottom-center">
-                <button>Edit</button> 
-            </div>
-        </div>
+    <!-- Loader part -->
+    <div class="spinner-border" role="status" id="profileLoader">
+        <span class="sr-only">Loading...</span>
+    </div>
+    <div id="page-top">
     </div>
     <div class="tabs">
         <input type="radio" id="personaltab" name="tabs" checked="checked">
         <label for="personaltab">Personal Plans</label>
-        <div class="takes-box"> 
-        </div>
 
         <input type="radio" id="likedtab" name="tabs">
         <label for="likedtab">Liked Plans</label>
-        <div class="plans-box">
+        <div id="plans-box">
+            <div class="spinner-border" role="status" id="planLoader">
+                <span class="sr-only">Loading...</span>
+            </div>
+            
             <div class="singleplan">
                 <div class="sort-results-header">
                     <h4>Chill First Year</h4>
@@ -57,43 +52,18 @@
                 <div class="description-box"> text goes here...
                 </div>
                 <div class="images-container">
-                    <img class="images" src="icons/heart.png"/> 
-                    <img class="images" src="icons/comment.png"/>
+                    <img class="images" src="icons/heart.png" />
+                    <img class="images" src="icons/comment.png" />
                 </div>
                 <br>
-                <div class="tags-group"> 
-                    <div class="tags"> <a href=""> #chill </a></div> 
+                <div class="tags-group">
+                    <div class="tags"> <a href=""> #chill </a></div>
                     <div class="tags"> <a href="">#freshman</a></div>
                 </div>
+            </div>
+            <!-- <br> REMEMBER TO ADD BREAK IN LIST -->
+
         </div>
-        <br>
-        <div class="singleplan">
-            <div class="sort-results-header">
-                <h4>Chill First Year</h4>
-                <h7>Nigel K</h7>
-            </div>
-            <br>
-            <div class="plan-info">
-                <div class="menu-item">School</div>
-                <div class="menu-item">Major</div>
-                <div class="menu-item">Semesters</div>
-            </div>
-            <h5>Description...</h5>
-            <br>
-            <div class="description-box"> text goes here...
-            </div>
-            <div class="images-container">
-                <img class="images" src="icons/heart.png"/> 
-                <img class="images" src="icons/comment.png"/>
-            </div>
-            <br>
-            <div class="tags-group"> 
-                <div class="tags"> <a href=""> #chill </a></div> 
-                <div class="tags"> <a href="">#freshman</a></div>
-            </div>
-    </div>
-    
-    </div>
 
 
     </div>
@@ -101,7 +71,7 @@
 
 
 
-    <div class="takes-box"></div> 
+    <div class="takes-box"></div>
 </body>
-</html>
 
+</html>
