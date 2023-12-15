@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     async function getProfileApi() {
         let url =
-        "http://127.0.0.1:5000/user_profile?email=" + currentUser;
+            "http://127.0.0.1:5000/user_profile?email=" + currentUser;
 
         // Storing response
         const response = await fetch(url);
@@ -27,11 +27,10 @@ $(document).ready(function () {
         document.getElementById(loaderId).style.display = 'none';
     }
 
-    // Function to define innerHTML for HTML table
     function showProfile(data) {
         console.log(data.name);
-        let profile_area = 
-        `        <div class="profile-title">
+        let profile_area =
+            `        <div class="profile-title">
                 <h2>${data.name}'s Profile</h2>
             </div>
             <div class="user-info-box">
@@ -51,26 +50,63 @@ $(document).ready(function () {
     }
 
     $("#personaltab").click(function () {
-        console.log("click happened");
+        getPlansApi("created_plans");
+    })
+
+    $("#likedtab").click(function () {
+        getPlansApi("liked_plans");
     })
 
     async function getPlansApi(plan_type) {
         let url =
-        "http://127.0.0.1:5000/"+ plan_type + "?email=" + currentUser;
+            "http://127.0.0.1:5000/" + plan_type + "?email=" + currentUser;
         // Storing response
         const response = await fetch(url);
 
         // Storing data in form of JSON
         var data = await response.json();
+        showPlan(data.data);
+    }
+
+    // Function to define innerHTML for HTML table
+    function showPlan(data) {
         console.log(data);
-        if (response) {
-            hideloader("planLoader");
+        let plans = ''
+        for (let r of data) {
+            plans += `<div class="singleplan">
+            <div class="sort-results-header">
+                <h4>${r.title}</h4>
+                <h7>${r.author_name}</h7>
+            </div>
+            <br>
+            <div class="plan-info">
+                <div class="menu-item">${r.school}</div>
+                <div class="menu-item">${r.major}</div>
+                <div class="menu-item">${r.semesters}</div>
+            </div>
+            <h5>Description...</h5>
+            <br>
+            <div class="description-box"> ${r.description}
+            </div>
+            <div class="images-container">
+                <img class="images" src="icons/heart.png" />
+                <img class="images" src="icons/comment.png" />
+            </div>
+            <br>
+            <div class="tags-group">
+                <div class="tags"> <a href="">${r.tags}</a></div>
+            </div>
+        </div>
+        <br>`;
         }
-        showPlans(data.data);
+        
+        document.getElementById("plans-box").innerHTML = plans;
+
+
     }
 
     getProfileApi();
-    getPlansApi("likedPlans");
+    getPlansApi("created_plans");
 
 
     /*     let score = 0;
