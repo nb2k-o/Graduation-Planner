@@ -150,6 +150,7 @@ def make_plan():
     author_name = payload["author_name"]
     author_email = payload["author_email"]
     tags = payload["tags"]
+    semester_classes = payload["semester_classes"]
 
     plan_collection.insert_one(
         {
@@ -164,6 +165,7 @@ def make_plan():
             "tags": tags,
             "likes": 0,
             "comments": 0,
+            "semester_classes": semester_classes
         }
     )
 
