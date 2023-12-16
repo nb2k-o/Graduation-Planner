@@ -321,7 +321,7 @@ def search_plans():
     if sort_by == "date_added_new":
         data = serialize_cursor_response(plan_collection.find(mongo_query).sort([("timestamp",-1)]))
     elif sort_by == "date_added_old":
-        data = serialize_cursor_response(plan_collection.find(mongo_query).sort([("timestamp",-1)]))
+        data = serialize_cursor_response(plan_collection.find(mongo_query).sort([("timestamp")]))
     else:
         data = serialize_cursor_response(plan_collection.find(mongo_query).sort([("popular",-1)]))
 
