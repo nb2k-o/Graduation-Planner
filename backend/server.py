@@ -299,6 +299,19 @@ def secondary_suggested_plans():
         {"ContentType": "application/json"},
     )
 
+@app.route("/popular_plans", methods=["GET"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
+def popular_plans():
+    response_data = {}
+    data = serialize_cursor_response(plan_collection.find().sort({"likes": -1, "comments": -1}))
+    response_data["plans"] = data
+
+    return (
+        json.dumps({"success": True, "data": response_data}),
+        200,
+        {"ContentType": "application/json"},
+    )
+
 ## SEARCH
 @app.route("/search_plans", methods=["GET"])
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
