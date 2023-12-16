@@ -89,8 +89,10 @@ $(document).ready(function () {
             <div class="description-box"> ${r.description}
             </div>
             <div class="images-container">
-                <img class="images" src="icons/heart.png" />
-                <img class="images" src="icons/comment.png" />
+                <div class="counts"><img class="images" src="icons/heart.png"/> 
+                    <div class="count">${r.likes}</div></div>
+                 
+                    <div class="counts"><img class="images" src="icons/comment.png"/> <div class="count">${r.comments}</div> </div>
             </div>
             <br>
             <div class="tags-group">

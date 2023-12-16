@@ -300,16 +300,16 @@ def secondary_suggested_plans():
 def search_plans():
     regex_term = {"$regex" : request.args["query_term"], "$options": 'i'}
     sort_by = request.args.get("sort_by", "popular")
-    school_filter = request.args.get("school_filter", None)
-    major_filter = request.args.get("major_filter", None)
+    school_filter = request.args.get("school", None)
+    major_filter = request.args.get("major", None)
     print(school_filter, major_filter)
 
     if school_filter and major_filter:
-        mongo_query = {"$or":[{"title": regex_term}, {"school": school_filter}, {"major": major_filter}, {"description": regex_term}, {"author_name": regex_term}, {"tags": regex_term}]}
+        mongo_query = {"school": school_filter, "major": major_filter, "$or":[{"title": regex_term}, {"school": school_filter}, {"major": major_filter}, {"description": regex_term}, {"author_name": regex_term}, {"tags": regex_term}]}
     elif school_filter:
-        mongo_query = {"$or":[{"title": regex_term}, {"school": school_filter}, {"major": regex_term}, {"description": regex_term}, {"author_name": regex_term}, {"tags": regex_term}]}
+        mongo_query = {"school": school_filter, "$or":[{"title": regex_term}, {"major": regex_term}, {"description": regex_term}, {"author_name": regex_term}, {"tags": regex_term}]}
     elif major_filter:
-        mongo_query = {"$or":[{"title": regex_term}, {"school": regex_term}, {"major": major_filter}, {"description": regex_term}, {"author_name": regex_term}, {"tags": regex_term}]}
+        mongo_query = {"major": major_filter, "$or":[{"title": regex_term}, {"school": regex_term}, {"description": regex_term}, {"author_name": regex_term}, {"tags": regex_term}]}
     else:
         mongo_query = {"$or":[{"title": regex_term}, {"school": regex_term}, {"major": regex_term}, {"description": regex_term}, {"author_name": regex_term}, {"tags": regex_term}]}
     

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles2.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="search.js"></script>
     <title>Search Banner</title>
 </head>
 <body>
@@ -11,11 +13,10 @@
         <div class="menu-button">☰</div>
         <div class="search-bar-container">
             <input type="text" placeholder="Search title, tags, description, author, etc... " class="search-bar">
-            <input id="search" type="button" value="search" onClick="search_func()">
+            <input id="search-b" type="button" value="search">
         </div>
         <button class="make-plan-button">Make Plan</button>
     </header>
-
     <div class="page-top">
         <div class = "sort-results-button">
             <button class="sort-by-dropdown">Sort by:</button>
@@ -25,7 +26,7 @@
                 <a href="">Relevance</a>
             </div>
         </div>
-        <div class="results-text">1-4 of 32 results for "first year"</div>
+        <div id="results-text"></div>
     </div>
     <hr>
     
@@ -33,30 +34,30 @@
     <div class ="filters">
         <span>Filter by: </span>
         <!-- <label id="college">College:</label> -->
-        <select class="dropdown">
+        <select class="dropdown1">
             <option value="null"></option> 
-            <option value="cc">Columbia College</option> 
-            <option value="seas">SEAS</option> 
-            <option value="bc">Barnard College</option> 
-            <option value="GS">General Studies</option> 
+            <option value="Columbia College">Columbia College</option> 
+            <option value="SEAS">SEAS</option> 
+            <option value="Barnard College">Barnard College</option> 
+            <option value="General Studies">General Studies</option> 
         </select>
         <!-- <label id="major">Major:</label>  -->
-        <select class="dropdown"> 
+        <select class="dropdown2"> 
             <option value="null"></option> 
-            <option value="cs">Computer Science</option> 
-            <option value="psy">Psychology</option> 
-            <option value="ecn">Economics</option> 
-            <option value="mth">Math</option> 
-            <option value="plsc">Political Science</option> 
-            <option value="susdev">Sustainable Development</option> 
-            <option value="eng">English</option> 
-            <option value="bio">Biology</option> 
+            <option value="Computer Science">Computer Science</option> 
+            <option value="Psychology">Psychology</option> 
+            <option value="Economics">Economics</option> 
+            <option value="Math">Math</option> 
+            <option value="Political Science">Political Science</option> 
+            <option value="Sustainable Development">Sustainable Development</option> 
+            <option value="English">English</option> 
+            <option value="Biology">Biology</option> 
         </select>
     </div> 
     <br>
 
-    <div class="search-body">
-        <div class="singleplan">
+    <div id="search-body">
+        <!--<div class="singleplan">
             <div class="sort-results-header">
                 <h4>Chill First Year</h4>
                 <h7>Nigel K</h7>
@@ -167,7 +168,7 @@
                 <div class="tags"> <a href="">#freshman</a></div>
             </div>
         </div>
-    </div>
+    </div> -->
     </div>
 
 
