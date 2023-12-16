@@ -1,14 +1,5 @@
 # Graduation-Planner
 
-## To Run FRONTEND (navigate to frontend directory):
-Open Terminal and navigate to project root directory.
-
-### Before First Run:
-```npm install```
-
-### To Start React App
-```npm start```
-
 ## To Run BACKEND in virtual environment (navigate to backend directory):
 Open Terminal and navigate to project root directory.
 
@@ -25,4 +16,4 @@ Open Terminal and navigate to project root directory.
 
 ### RUN SERVER!!!
 ```python server.py```
-You can access backend API locally using "http://127.0.0.1:5000"
+To use application: "http://127.0.0.1:5000"

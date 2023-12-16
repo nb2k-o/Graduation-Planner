@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 import json
 import re
 import time
@@ -18,11 +18,16 @@ liked_plan_collection = client.get_database("GraduationPlanner").get_collection(
 )
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 cors = CORS(app, resources={r"/foo": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
-##AUTHENTICATION
 
+##LANDING PAGE FRONTEND
+@app.route('/')
+def home():
+   return render_template('landingpage.html')
+
+##AUTHENTICATION
 
 @app.route("/signup", methods=["POST"])
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])

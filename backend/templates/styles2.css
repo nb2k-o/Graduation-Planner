@@ -63,7 +63,7 @@ h1 {
   cursor: pointer;
 }
 
-.page-top {
+#page-top {
   display: flex;
   justify-content: space-between;
 }
@@ -131,13 +131,13 @@ li {
   position: relative;
 }
 
-.plans-box {
+#plans-box {
   margin: 50px ;
   margin-left: 0px;
   margin-top: -5px;
   padding: 25px;
   width: 900px;
-  height: 800px;
+  overflow:auto; 
   flex-shrink: 0;
   background: #ffffff;
   border: 2px solid #001f3f;
