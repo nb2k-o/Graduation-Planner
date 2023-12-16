@@ -18,32 +18,27 @@
         <button class="make-plan-button">Make Plan</button>
     </header>
     <div class="page-top">
-        <div class = "sort-results-button">
-            <button class="sort-by-dropdown">Sort by:</button>
-            <div class="sort-categories">
-                <a href="">Popular</a>
-                <a href="">Date Uploaded</a>
-                <a href="">Relevance</a>
-            </div>
-        </div>
+        <select class="sort-dropdown">
+            <option value="popular">Sort by: Popular</option> 
+            <option value="date_added_new">Newest to Oldest</option> 
+            <option value="date_added_old">Oldest to Newest</option> 
+        </select>
         <div id="results-text"></div>
     </div>
     <hr>
     
 
     <div class ="filters">
-        <span>Filter by: </span>
-        <!-- <label id="college">College:</label> -->
+        <span>Filter by:</span>
         <select class="dropdown1">
-            <option value="null"></option> 
+            <option value="null">College</option> 
             <option value="Columbia College">Columbia College</option> 
             <option value="SEAS">SEAS</option> 
             <option value="Barnard College">Barnard College</option> 
             <option value="General Studies">General Studies</option> 
         </select>
-        <!-- <label id="major">Major:</label>  -->
         <select class="dropdown2"> 
-            <option value="null"></option> 
+            <option value="null">Major</option> 
             <option value="Computer Science">Computer Science</option> 
             <option value="Psychology">Psychology</option> 
             <option value="Economics">Economics</option> 
@@ -56,119 +51,9 @@
     </div> 
     <br>
 
+
     <div id="search-body">
-        <!--<div class="singleplan">
-            <div class="sort-results-header">
-                <h4>Chill First Year</h4>
-                <h7>Nigel K</h7>
-            </div>
-            <br>
-            <div class="plan-info">
-                <div class="menu-item">School</div>
-                <div class="menu-item">Major</div>
-                <div class="menu-item">Semesters</div>
-            </div>
-            <h5>Description...</h5>
-            <br>
-            <div class="description-box"> text goes here...
-            </div>
-            <div class="images-container">
-                <div class="counts"><img class="images" src="/static/heart.png"/> 
-                    <div class="count">20</div></div>
-                 
-                    <div class="counts"><img class="images" src="/static/comment.png"/> <div class="count">3</div> </div>
-            </div>
-            <br>
-            <div class="tags-group"> 
-                <div class="tags"> <a href=""> #chill </a></div> 
-                <div class="tags"> <a href="">#freshman</a></div>
-            </div>
-        </div>
-        <br>
-        <div class="singleplan">
-            <div class="sort-results-header">
-                <h4>Chill First Year</h4>
-                <h7>Nigel K</h7>
-            </div>
-            <br>
-            <div class="plan-info">
-                <div class="menu-item">School</div>
-                <div class="menu-item">Major</div>
-                <div class="menu-item">Semesters</div>
-            </div>
-            <h5>Description...</h5>
-            <br>
-            <div class="description-box"> text goes here...
-            </div>
-            <div class="images-container">
-                <div class="counts"><img class="images" src="/static/heart.png"/> 
-                    <div class="count">20</div></div>
-                 
-                    <div class="counts"><img class="images" src="/static/comment.png"/> <div class="count">3</div> </div>
-            </div>
-            <br>
-            <div class="tags-group"> 
-                <div class="tags"> <a href=""> #chill </a></div> 
-                <div class="tags"> <a href="">#freshman</a></div>
-            </div>
-        </div>
-        <br>
-        <div class="singleplan">
-            <div class="sort-results-header">
-                <h4>Chill First Year</h4>
-                <h7>Nigel K</h7>
-            </div>
-            <br>
-            <div class="plan-info">
-                <div class="menu-item">School</div>
-                <div class="menu-item">Major</div>
-                <div class="menu-item">Semesters</div>
-            </div>
-            <h5>Description...</h5>
-            <br>
-            <div class="description-box"> text goes here...
-            </div>
-            <div class="images-container">
-                <div class="counts"><img class="images" src="/static/heart.png"/> 
-                    <div class="count">20</div></div>
-                 
-                    <div class="counts"><img class="images" src="/static/comment.png"/> <div class="count">3</div> </div>
-            </div>
-            <br>
-            <div class="tags-group"> 
-                <div class="tags"> <a href=""> #chill </a></div> 
-                <div class="tags"> <a href="">#freshman</a></div>
-            </div>
-        </div>
-        <br>
-        <div class="singleplan">
-            <div class="sort-results-header">
-                <h4>Chill First Year</h4>
-                <h7>Nigel K</h7>
-            </div>
-            <br>
-            <div class="plan-info">
-                <div class="menu-item">School</div>
-                <div class="menu-item">Major</div>
-                <div class="menu-item">Semesters</div>
-            </div>
-            <h5>Description...</h5>
-            <br>
-            <div class="description-box"> text goes here...
-            </div>
-            <div class="images-container">
-                <div class="counts"><img class="images" src="/static/heart.png"/> 
-                    <div class="count">20</div></div>
-                 
-                    <div class="counts"><img class="images" src="/static/comment.png"/> <div class="count">3</div> </div>
-            </div>
-            <br>
-            <div class="tags-group"> 
-                <div class="tags"> <a href=""> #chill </a></div> 
-                <div class="tags"> <a href="">#freshman</a></div>
-            </div>
-        </div>
-    </div> -->
+       
     </div>
 
 
