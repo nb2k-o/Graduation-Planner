@@ -226,12 +226,20 @@ def toggle_like_plan():
                 "liker_email": email,
             }
         )
+        plan_collection.find_one_and_update(
+        {'_id': ObjectId(plan_id)},
+        {'$inc': {'likes': -1}}
+    )
     else:
         liked_plan_collection.insert_one(
             {
                 "plan_id": plan_id,
                 "liker_email": email,
             }
+        )
+        plan_collection.find_one_and_update(
+        {'_id': ObjectId(plan_id)},
+        {'$inc': {'likes': 1}}
         )
 
     return json.dumps({"success": True}), 200, {"ContentType": "application/json"}
@@ -248,6 +256,11 @@ def comment_plan():
 
     comment_collection.insert_one(
         {"plan_id": plan_id, "author_email": email, "text": text}
+    )
+    
+    plan_collection.find_one_and_update(
+        {'_id': ObjectId(plan_id)},
+        {'$inc': {'comments': 1}}
     )
 
     return json.dumps({"success": True}), 200, {"ContentType": "application/json"}
