@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/nstyles.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="/static/signup.js"></script>
+    <title>Create your account</title>
+</head>
+
+<body>
+    <div>
+        <div class="title">
+            <h1>
+              Plan Finder
+              <img src= "../static/logo.png" alt="logo" />
+            </h1>
+        </div>
+        <div class="blueBox">
+            <h2>Welcome...</h2>
+            <form id="signup">
+            Display Name
+            <input id="d_name" name="d_name" required/>
+
+            Intended Program of Study
+            <select  id="major">
+            </select>
+
+            Expected Graduation Year
+            <input id="year" name="year" required/>
+
+            School
+            <select id="school">
+            </select>
+
+            Email
+            <input id="email" name="email" required/>
+
+            Password
+            <input id="password" type="password" name="password" required/>
+            
+            <button>Sign Up</button>
+            </form>
+            <div class="signUp">
+            <a href="{{ url_for('template_route', path='login')}}">Existing user? Log in here</a>
+            </div>  
+        </div>
+        </div>
+</body>
+
+</html>

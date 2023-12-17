@@ -1,13 +1,11 @@
 $(document).ready(function () {
-    sessionStorage.setItem("currentUser", "ooo2139@columbia.edu");
+
     let currentUser = sessionStorage.getItem("currentUser");
-    console.log(currentUser);
-    //let currentUser = sessionStorage.getItem("currentUser");
-    /**if (currentUser == null) {
+    if (currentUser == null) {
         console.log("undefined");
-        window.location.href = "landingpage.html"; //will change to login once that gets in static pages
+        window.location.href = '/pages/login';
     }
-    console.log(currentUser);**/
+    console.log(currentUser);
 
     async function getPopularPlans(){
         let url =
@@ -56,19 +54,17 @@ $(document).ready(function () {
 
     
     $("#suggested-button").click(function () {
-        window.location.href = "suggestedplans.html";
+        window.location = "suggestedplans";
     })
 
     $("#profile-button").click(function () {
-        window.location.href = "profile.html";
+        window.location= "profile";
     })
 
     $("#search-b").click(function () {
         let currentSearch = sessionStorage.setItem("currentSearch", $(".search-bar").val());
-        window.location.href = "search.html";
+        window.location = "search";
     })
-
-
     
     getPopularPlans();
     

@@ -27,6 +27,12 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 def home():
    return render_template('landingpage.html')
 
+
+@app.route('/pages/<path>')
+def template_route(path):
+    return render_template(path + '.html')
+
+
 ##AUTHENTICATION
 
 @app.route("/signup", methods=["POST"])

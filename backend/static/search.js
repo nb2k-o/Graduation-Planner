@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    
     let currentSearch = sessionStorage.getItem("currentSearch");
     console.log(currentSearch);
     if (currentSearch){
