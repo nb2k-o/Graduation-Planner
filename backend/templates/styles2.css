@@ -38,21 +38,9 @@ h1 {
   width: 300px;
 }
 
-.search-button {
-  background-color: #fff;
-  color: #001f3f;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 20px;
-  margin-left: 10px;
-  cursor: pointer;
-}
-
 .menu-button {
   font-size: 30px;
   cursor: pointer;
-  /**display: inline-block;
-  align-items: left;**/
 }
 
 .make-plan-button {
@@ -585,11 +573,14 @@ td {
   margin-right: 10px;
 }
 
-* {
-  margin: 0; 
-  padding: 0;
-  font-family: "Noto Serif Thai";
+#suggested-title{
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: -40px;
 }
+
 
 div#banner { 
   

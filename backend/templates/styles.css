@@ -1,0 +1,271 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #094179; 
+    color: #fff; 
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+  
+#searchQuerySubmit:hover {
+    cursor: pointer;
+}
+  
+h1 {
+    margin: 0;
+}
+
+.search-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+    padding: 0 20px; 
+}
+
+.search-bar {
+    padding: 8px;
+    border-radius: 30px;
+    border: none;
+    outline: none;
+    width: 300px;
+}
+
+
+
+
+.menu-button {
+    font-size: 30px;
+    cursor: pointer;
+    /**align-items: left;**/
+
+}
+
+.make-plan-button {
+    background-color: #e3f0ff;
+    color: #001f3f;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+div#banner { 
+    top: 0;
+    background-color: #005CA1; 
+    width: 100%; 
+    height: 50;
+}
+div#banner-content { 
+    width: 100%;
+    padding: 10px; 
+    height: 50;
+}
+
+input#search {
+    border-radius: 25px;
+    padding: 5px;
+    background-color: #E3F0FF; 
+    margin-left: 30%;
+    margin-top: 0;
+    
+    background-image: url("/static/search.png");
+    text-indent: 20px;
+    
+}
+
+button {
+    background-color: transparent;
+    border: none;
+    
+}
+
+button#makeplan {
+    background-color: #E3F0FF; 
+    right: 20px;
+    height: 25px;
+    width: 100px;
+    float: right;
+    position: relative;
+    right: 30px;
+    font-size: 13;
+    font-weight: bold;
+
+}
+
+img {
+    height: 30px;
+    width: 40px;
+}
+.img{
+    float: left;
+    left: 30px;
+}
+
+/*Banner styles end*/
+
+div#main { 
+    padding: 30px;
+    margin-left: 60px;
+    margin-right: 60px;
+    padding-bottom: 60px;
+}
+
+p#title{
+    font-size: 25;
+    font-weight: bold;
+    text-align: center;
+    padding-bottom: 20;
+}
+
+div#main-options { 
+    background-color: #E3F0FF; 
+    height: 20%;
+    width: 100%;
+    text-align:center;
+
+}
+
+span#links{
+    height:100%;
+    width: 100%;
+
+    display: inline-block;
+    align-items: middle;
+}
+
+button#options{
+    background-color: #FFFFFF;
+    color: #005CA1;
+    height: 70;
+    width: 120;
+    margin-top:30px;
+    vertical-align: middle;
+
+    border: 1px solid;
+    font-size: 15;
+    font-weight: bold;
+
+    margin-left:30;
+    margin-right:30;
+    cursor: pointer;
+}
+
+button#suggested-button{
+    background-color: #FFFFFF;
+    color: #005CA1;
+    height: 70;
+    width: 120;
+    margin-top:30px;
+    vertical-align: middle;
+
+    border: 1px solid;
+    font-size: 15;
+    font-weight: bold;
+
+    margin-left:30;
+    margin-right:30;
+    cursor: pointer;
+}
+
+#profile-button{
+    background-color: #FFFFFF;
+    color: #005CA1;
+    height: 70;
+    width: 120;
+    margin-top:30px;
+    vertical-align: middle;
+
+    border: 1px solid;
+    font-size: 15;
+    font-weight: bold;
+
+    margin-left:30;
+    margin-right:30;
+    cursor: pointer;
+}
+
+div#suggested-plans {
+    background-color: #E3F0FF; 
+    height: 60%;
+    width: 100%;
+
+}
+
+label#find-pop {
+    font-size: 22;
+    margin: 60px;
+    color: #000000;
+    font-weight: bold;
+    font-family: "Noto Serif";
+
+}
+
+div#grid-container {
+    padding: 60px;
+    display: grid;
+    row-gap: 50px;
+    column-gap: 50px;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    justify-content: space-evenly;
+
+}
+.grid-item {
+    background-color: #FFFFFF;
+    color: #005CA1;
+    border: 1px solid;
+    height: 80;
+    width: 220;
+    display : flex;
+    padding:10px;
+}
+
+div#top {
+
+    width: 220;
+    display: table;
+    font-size:0;
+    
+}
+
+.name {
+    font-size:23;
+    color: #000000;
+    font-weight:bold;
+    font-family: "Noto Serif";
+
+}
+.author {
+    font-size:12;
+    color: #005CA1;
+    display: table-cell;
+    vertical-align: bottom;
+    
+}
+.tags {
+    padding-top: 30px;
+}
+.likes {
+    vertical-align: middle;
+    margin-right: 10px;
+    color:black;
+}
+.comments {
+    vertical-align: middle;
+    color:black;
+}
+
+
+.planicon{
+    height:15px;
+    width: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
