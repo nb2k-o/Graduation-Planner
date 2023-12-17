@@ -1,10 +1,10 @@
 <html>
 <head>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <!-- <script src="test.js"></script> -->
+    <script src="/static/landingpage.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Landing Page</title>
-	<link rel="stylesheet" href="styles.css">
+	<link rel="stylesheet" href="/static/styles.css">
     <!-- <style type="text/css" media="screen">
 
     </style> -->
@@ -12,22 +12,12 @@
 
 
 <body>
-	<!-- <div id="banner">
-    	<div id="banner-content">
-    		<span class="img">
-    			<button type = "button" id = "dropdown"><img src= "/static/dropdown.png"></button>
-    			<button type = "button" id = "logo"><img src= "/static/logo.png"></button>
-    		</span>
-    	
-    		<input id = "search" type="text" placeholder="Search..">
-    		<button type = "button" id="makeplan">Make Plan</button>
-    	</div>
-	</div> -->
 	<header>
         <div class="menu-button">☰</div>
         <div class="search-bar-container">
             <input type="text" placeholder="Search title, tags, description, author, etc... " class="search-bar">
-            <input id="search-b" type="button" value="search">
+            <div>&nbsp;&nbsp;&nbsp;</div>
+			<input id="search-b" type="button" value="search">
         </div>
         <button class="make-plan-button">Make Plan</button>
     </header>
@@ -35,8 +25,8 @@
   		<p id=title>Welcome to Graduation Planner!</p>
     	<div id="main-options" >
     		<span id = "links">
-    			<button type="button" id="options">Find Suggested Plans</button>
-    			<button type="button" id="options">View Profile</button>
+    			<button type="button" id="suggested-button">Find Suggested Plans</button>
+    			<button type="button" id="profile-button">View Profile</button>
     			<button type="button" id="options">Create New Plan</button>
     		</span>
     	</div>
@@ -47,74 +37,7 @@
     		
     		<label id= "find-pop">Popular Columbia Graduation Plans</label>
     		<div id= "grid-container"> 
-    			<div class="grid-item">
-    				<div id="header"> 
-    					<div id="top">
-    						<span class= "name">Chill First Year</span>
-    						<span class= "author">Nigel K</span>
-    					</div>
-    					
-    					<div>
-    						<label class= "tags">#chill #freshman #relaxed</label>
-    					</div>
-    					<br>
-    					<div>
-    						<label class= "likes"><img src="../static/heart.png" class="planicon">5</label>
-    						<label class= "comments"><img src="../static/comment.png" class="planicon">3</label>
-    					</div>
-    				</div>
-    			</div>
-  				<div class="grid-item">
-  					<div id="header"> 
-    					<div id="top">
-    						<span class= "name">Intensive First...</span>
-    						<span class= "author">Miira E.</span>
-    					</div>
-    					
-    					<div>
-    						<label class= "tags">#freshman #intensive #core</label>
-    					</div>
-    					<br>
-    					<div>
-    						<label class= "likes"><img src="../static/heart.png" class="planicon">3</label>
-    						<label class= "comments"><img src="../static/comment.png" class="planicon">5</label>
-    					</div>
-    				</div>
-  				</div>
-  				<div class="grid-item">
-  					<div id="header"> 
-    					<div id="top">
-    						<span class= "name">Sophomore Grind</span>
-    						<span class= "author">Ola O.</span>
-    					</div>
-    					
-    					<div>
-    						<label class= "tags">#cs #sophomore #ap</label>
-    					</div>
-    					<br>
-    					<div>
-    						<label class= "likes"><img src="../static/heart.png" class="planicon">5</label>
-    						<label class= "comments"><img src="../static/comment.png" class="planicon">3</label>
-    					</div>
-    				</div>
-  				</div>
-  				<div class="grid-item">
-  					<div id="header"> 
-    					<div id="top">
-    						<span class= "name">Best Premed S...</span>
-    						<span class= "author">Sean H.</span>
-    					</div>
-    					
-    					<div>
-    						<label class= "tags">#bio #premed #grind</label>
-    					</div>
-    					<br>
-    					<div>
-    						<label class= "likes"><img src="../static/heart.png" class="planicon">5</label>
-    						<label class= "comments"><img src="../static/comment.png" class="planicon">3</label>
-    					</div>
-    				</div>
-  				</div>
+    			
     		</div>
     	</div>
     </div>

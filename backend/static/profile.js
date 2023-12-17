@@ -2,7 +2,7 @@ $(document).ready(function () {
     let currentUser = sessionStorage.getItem("currentUser");
     if (currentUser == null) {
         console.log("undefined");
-        window.location.href = "landingpage.html"; //will change to login once that gets in static pages
+        window.location.href = '/pages/login';
     }
     console.log(currentUser);
 

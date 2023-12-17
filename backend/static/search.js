@@ -1,4 +1,12 @@
 $(document).ready(function(){
+    
+    let currentSearch = sessionStorage.getItem("currentSearch");
+    console.log(currentSearch);
+    if (currentSearch){
+        $(".search-bar").val(currentSearch);
+        getSearchApi(currentSearch);
+        sessionStorage.setItem("currentSearch", null);
+    }
 
     async function getSearchApi(search_term, sort_by, school_filter, major_filter) {
         let url =
@@ -76,22 +84,7 @@ $(document).ready(function(){
         
         document.getElementById("search-body").innerHTML = plans;
     }
-    
-    /** 
-    function getSchoolFilter() {
-        selectElement = 
-              document.querySelector('.dropdown1');
-        output = selectElement.value;
-        document.querySelector('.output').textContent = output;
-    }
 
-    function getMajorFilter() {
-        selectElement = 
-              document.querySelector('.dropdown2');
-        output = selectElement.value;
-        document.querySelector('.output').textContent = output;
-    }
-    */
 
     function updateSearch() {
         var str = $(".search-bar").val();
@@ -107,6 +100,7 @@ $(document).ready(function(){
     })
     $(".dropdown1").change(function(){
         updateSearch();
+        
       })
 
       $(".dropdown2").change(function(){
@@ -116,14 +110,12 @@ $(document).ready(function(){
         updateSearch();
       })
 
+      $(".close-sidebar-button").click(function() {
+        document.getElementById("mySidebar").style.display = "none";
+      })
+
+      $(".menu-button").click(function() {
+        document.getElementById("mySidebar").style.display = "block";
+      })
+
 })
-
-
-
-
-
-
-
-
-
-
