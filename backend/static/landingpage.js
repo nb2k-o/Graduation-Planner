@@ -65,6 +65,13 @@ $(document).ready(function () {
         let currentSearch = sessionStorage.setItem("currentSearch", $(".search-bar").val());
         window.location = "search";
     })
+
+    $('.search-bar').on('keypress',function(e) {
+        if(e.which == 13) {
+            let currentSearch = sessionStorage.setItem("currentSearch", $(".search-bar").val());
+            window.location = "search";
+        }
+    });
     
     getPopularPlans();
     

@@ -95,9 +95,17 @@ $(document).ready(function(){
     }
 
     $("#search-b").click(function () {
-        var str = $(".search-bar").val();
-        getSearchApi(str);
+        let currentSearch = sessionStorage.setItem("currentSearch", $(".search-bar").val());
+        window.location = "search";
     })
+
+    $('.search-bar').on('keypress',function(e) {
+        if(e.which == 13) {
+            let currentSearch = sessionStorage.setItem("currentSearch", $(".search-bar").val());
+            window.location = "search";
+        }
+    });
+    
     $(".dropdown1").change(function(){
         updateSearch();
         

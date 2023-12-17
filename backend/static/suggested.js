@@ -1,6 +1,9 @@
 $(document).ready(function () {
-    sessionStorage.setItem("currentUser", "ooo2139@columbia.edu");
     let currentUser = sessionStorage.getItem("currentUser");
+    if (currentUser == null) {
+        console.log("undefined");
+        window.location.href = '/pages/login';
+    }
     console.log(currentUser);
 
     async function getSuggestedPlans(){
@@ -60,4 +63,16 @@ $(document).ready(function () {
     }
 
     getSuggestedPlans();
+
+    $("#search-b").click(function () {
+        let currentSearch = sessionStorage.setItem("currentSearch", $(".search-bar").val());
+        window.location = "search";
+    })
+
+    $('.search-bar').on('keypress',function(e) {
+        if(e.which == 13) {
+            let currentSearch = sessionStorage.setItem("currentSearch", $(".search-bar").val());
+            window.location = "search";
+        }
+    });
 })
