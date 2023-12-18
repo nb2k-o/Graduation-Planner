@@ -40,7 +40,6 @@ $(document).ready(function () {
                     <li>${data.grad_year}</li>
                 </ul>
                 <div class="bottom-center">
-                    <button>Edit</button>
                 </div>
             </div>
         `
@@ -73,7 +72,7 @@ $(document).ready(function () {
         console.log(data);
         let plans = ''
         for (let r of data) {
-            plans += `<div class="singleplan">
+            plans += `<div class="singleplan" id=${r._id}>
             <div class="sort-results-header">
                 <h4>${r.title}</h4>
                 <h7>${r.author_name}</h7>
@@ -97,13 +96,18 @@ $(document).ready(function () {
             <br>
             <div class="tags-group">
                 <div class="tags"> <a href="">${r.tags}</a></div>
-            </div>
-        </div>
+
+            </div><button class="make-plan-button">Delete</button>
+        </div> 
         <br>`;
         }
         
         document.getElementById("plans-box").innerHTML = plans;
 
+        $("#plans-box .singleplan").click(function () {
+            sessionStorage.setItem("currentplan", $(this).attr('id'));
+            window.location = "viewplan";
+        })
 
     }
 

@@ -84,7 +84,8 @@ h2 {
 }
 
 .user-info-box {
-  width: fit-content;
+  width: 400px;
+  min-width: fit-content;
   height: 125px;
   margin-right: 200px;
   text-align: left;
