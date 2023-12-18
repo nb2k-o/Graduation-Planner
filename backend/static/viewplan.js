@@ -28,32 +28,6 @@ $(document).ready(function(){
     }
     getPlan(id)
 
-
-    // const init = function(){
-    //     var id = sessionStorage.getItem('currentplan');
-    //     // data = {
-    //     //     "title": "Chill first year",
-    //     //     "school": "Columbia College",
-    //     //     "major": "Computer Science",
-    //     //     "description": "This is a chill plan for first years",
-    //     //     "author_name": "Nigel K.",
-    //     //     "tags": "#fun #great",
-    //     //     "likes": 7,
-    //     //     "comments": 2,
-    //     //     "semester_classes": {
-    //     //         "Freshman Fall": {"Java":"CS", "LitHum":"Core", "UW": "Core", "UW": "Core", "UW": "Core"}, 
-    //     //         "Freshman Spring": {"Data Structures":"CS", "LitHum":"Core", "UW": "Core", "UW": "Core", "UW": "Core"}
-    //     //     }
-
-    //     // }
-    //     showData(data)
-    //     comments = {
-    //         "Miira E": "This plan was so great for my freshman year",
-    //         "Ola O": "This plan gave me time to apply to clubs and internships"
-    //     }
-    //     showComments(comments)
-    // }
-
     function showData(data) {
         document.getElementById('plan-name').innerHTML = data.title;
         document.getElementById('school-name').innerHTML = data.school;
@@ -65,9 +39,7 @@ $(document).ready(function(){
         document.getElementById('likes').innerHTML = data.likes;
         document.getElementById('comments').innerHTML = data.comments;
 
-        // alert(data.semester_classes)
         const keys = data.semester_classes;
-        alert(keys.length)
         for (let i = 0; i < keys.length; i++) {
             const title = keys[i]["title"];
             console.log(title)
@@ -85,14 +57,13 @@ $(document).ready(function(){
                 const r = innerkey[j]["Reason"]
                 console.log(c + " " + r)
                 table += `<tr>
-                    <td><input type="text" class="table-entry">${c}</td>
-                    <td><input type="text" class="table-entry"/>${r}</td> 
+                    <td><p class = "table-entry">${c}</p></td>
+                    <td><p class = "table-entry">${r}</p></td> 
                     </tr>`
             }
             table += `</table></div>`
             document.getElementById('semester-row').innerHTML += table;
         }
-        //alert(table)
         
     }
 

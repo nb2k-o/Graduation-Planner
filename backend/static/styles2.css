@@ -470,7 +470,18 @@ h8  {  /** plan on plan pg author **/
   background-color: transparent;
   border:none;
   word-wrap: break-word;
-  word-break: break-all;
+    word-break: break-all;
+  
+}
+
+p .table-entry {
+  padding:0;
+  margin:2;
+  width:96px;
+  height:20px;
+  background-color: transparent;
+  border:none;
+  font-size: 10;
 }
 
 input{
@@ -515,6 +526,7 @@ input#table-entry {
   margin-right: 30px;
 }
 
+
 th {
   background-color: #005CA1; 
   color: #FFFFFF;
@@ -522,6 +534,14 @@ th {
   height:20px;
 }
 
+td {
+  border: 1px solid;
+  border-color: #005CA1; 
+  border-collapse: collapse;
+  width: auto;
+  height:40px;
+  font-size: 10;
+}
 .interactions-container {
   display: flex;
   flex-direction: row;
