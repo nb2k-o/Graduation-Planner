@@ -67,7 +67,7 @@ $(document).ready(function(){
 
         // alert(data.semester_classes)
         const keys = data.semester_classes;
-        alert(keys.length)
+    
         for (let i = 0; i < keys.length; i++) {
             const title = keys[i]["title"];
             console.log(title)

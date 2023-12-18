@@ -41,7 +41,8 @@ $(document).ready(function(){
               }
             },
             (error) => {
-                alert('There was a problem with the request:', error);
+                console.log('There was a problem with the request:', error);
+                alert("An error occured. Please try again later.");
             })
     }
     

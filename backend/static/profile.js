@@ -67,6 +67,38 @@ $(document).ready(function () {
         showPlan(data.data);
     }
 
+    async function deletePlan(id) {
+        let url = "http://127.0.0.1:5000/remove_plan/" + id;
+        // Storing response
+        const response = await fetch(url,{ 
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+              },
+        }).then(response => {
+            
+            if(response.ok){
+                return response.json()
+            }
+
+            else{
+                Promise.reject(response)
+            }
+        
+        })
+        .then(data => {
+          if ("success" in data) {
+            window.location.reload()
+          } else {
+            alert("We could not delete your plan. Please try again");
+          }
+        },
+        (error) => {
+            console.log('There was a problem with the request:', error);
+            alert("An error occured. Please try again later.");
+        });
+    }
+
     // Function to define innerHTML for HTML table
     function showPlan(data) {
         console.log(data);
@@ -97,7 +129,7 @@ $(document).ready(function () {
             <div class="tags-group">
                 <div class="tags"> <a href="">${r.tags}</a></div>
 
-            </div><button class="make-plan-button">Delete</button>
+            </div><button class="delete-plan-button" id=${r._id}>Delete</button>
         </div> 
         <br>`;
         }
@@ -107,6 +139,13 @@ $(document).ready(function () {
         $("#plans-box .singleplan").click(function () {
             sessionStorage.setItem("currentplan", $(this).attr('id'));
             window.location = "viewplan";
+        })
+
+       
+        $(".delete-plan-button").click(function (e) {
+            e.stopPropagation()
+            sessionStorage.setItem("currentplan", null);
+            deletePlan($(this).attr('id'))
         })
 
     }
@@ -126,5 +165,7 @@ $(document).ready(function () {
             window.location = "search";
         }
     });
+
+    
 
 })

@@ -371,6 +371,23 @@ def search_plans():
         {"ContentType": "application/json"},
     )
 
+## Delete
+@app.route("/remove_plan/<id>", methods=["DELETE"])
+@cross_origin(origin='*',headers=['Content-Type','Authorization'])
+def remove_plan(id):
+
+    try:
+        result = plan_collection.find_one_and_delete({"_id": ObjectId(id)})
+
+        return (
+            json.dumps({"success": True}),
+            200,
+            {"ContentType": "application/json"},
+        )
+    except Exception as e:
+        return json.dumps({"error": str(e)})
+
+
 # Running app
 if __name__ == "__main__":
     app.run(debug=True)
