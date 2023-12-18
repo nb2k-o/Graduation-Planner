@@ -1,10 +1,4 @@
-// $(document).ready(function(){
-
-    // function init() {
-    //     // var form = document.getElementById("makeplan");
-    //     // document.getElementById("submit").addEventListener('click', submitPlan());
-    //     // document.getElementById('plus').addEventListener('click', addTable())
-    // }
+$(document).ready(function(){
 
     function addTable(){
         
@@ -14,9 +8,12 @@
         container.appendChild(clonedElement);
     }
 
+    var form = document.getElementById("makeplan");
 
-    function submitPlan(form){
-        // form.preventDefault();
+    async function submitPlan(e){
+
+        e.preventDefault();
+    
         semesters = ["Freshman Fall", "Freshman Spring", "Sophomore Fall", "Sophomore Spring", "Junior Fall", "Junior Spring", "Senior Fall", "Senior Spring"]
         
         let iname = document.getElementById('plan-form').value;
@@ -44,12 +41,10 @@
         }
         
         let currentUser = sessionStorage.getItem("currentUser");
-        let name = "Ola O."
-        // if(currentUser != null)
-        //     name = getName(currentUser)
-        let email = "ooo2139@columbia.edu"
-
         
+        let email = currentUser
+        let name = await getName(currentUser)
+        console.log(iname)
         var jsonData = {}
         jsonData["title"] = iname
         jsonData["school"] = icollege
@@ -61,70 +56,16 @@
         jsonData["author_email"] = email
         jsonData["tags"] = itags
 
-        
-        // var jsonData = JSON.stringify({
-        //     title: iname,
-        //     school: icollege,
-        //     major: imajor,
-        //     semesters: istart,
-        //     semester_classes: JSON.stringify(tbls), 
-        //     description: idesc,
-        //     // author_name: currentUser.name,
-        //     // author_email: currentUser.name,
-        //     itags
-        // })
+        if (!(iname && icollege && imajor && istart && tbls && idesc && name && email &&itags)){
+            alert("Please make sure all fields are filled out.")
+            return
+        }
         postJson(jsonData)
-        //alert(JSON.stringify(jsonData))
         
     }
 
 
     async function postJson(jsonData){
-
-        data = {
-            "title": "Chill first year",
-            "school": "Columbia College",
-            "major": "Computer Science",
-            "semesters": "Semesters 1-2",
-            "semester_classes":[ { 
-                "title": "Freshman Fall", 
-                "classes": [
-                {
-                    "Class":"Java", 
-                    "Reason":"CS"
-                 }, 
-                 {
-                    "Class":"LitHum", 
-                    "Reason":"Core"
-                 }, 
-                 {
-                    "Class":"Fro Sci", 
-                    "Reason":"Core"
-                 }
-                ]}, 
-                {"title": "Freshman Spring", 
-                "classes": [
-                {
-                    "Class":"Data Structures", 
-                    "Reason":"CS"
-                 }, 
-                 {
-                    "Class":"LitHum", 
-                    "Reason":"Core"
-                 }, 
-                 {
-                    "Class":"UW", 
-                    "Reason":"Core"
-                 }
-                ]
-            }
-            
-            ],
-            "description": "This is a chill plan for first years",
-            "author_name": "Nigel K.",
-            "author_email": "ooo2139@columbia.edu",
-            "tags": "#fun #great"
-        }
 
         const url = `http://127.0.0.1:5000/make_plan`;
         
@@ -133,24 +74,25 @@
                 headers: {
                 'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(jsonData)
             })
-                .then((response) => {
-                    // console.log(response.json() + "this is response")
-                    response.json()
-                })
-                .then((data) => {
-                    console.log(JSON.stringify(data))
-                if ("success" in JSON.stringify(data)) {
-                    console.log("success")
-                    // id data["data"]
-                    // window.location = "viewpage/" + email = 
+            .then((response) =>  {
+                return response.json()
+                
+            })
+            .then((data) => {
+                if ("success" in data) {
+                    const planid = data.data.$oid
+
+                    sessionStorage.setItem("currentplan", planid);
+                    window.location = "viewplan";
                 } else {
-                    console.log("unsuccessful.");
+                    alert("Your plan could not be created. Please try again.")
                 }
-                }, (error) => {
-                    console.log('There was a problem with the request:', error);
-                })
+            }, (error) => {
+                console.log('There was a problem with the request:', error);
+                alert("Your plan could not be created. Please try again.")
+            })
     }
 
     async function getName(currentUser) {
@@ -160,18 +102,12 @@
         let url =
             "http://127.0.0.1:5000/user_profile?email=" + currentUser;
 
-        // Storing response
         const response = await fetch(url);
 
-        // Storing data in form of JSON
         var data = await response.json();
-        console.log(data);
-        if (response) {
-            hideloader("profileLoader");
-        }
         return data.data.name
     }
 
-    // document.addEventListener("DOMContentLoaded", init);
+    form.addEventListener('submit', submitPlan);
 
-// })
+})

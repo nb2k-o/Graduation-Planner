@@ -160,7 +160,7 @@ def liked_plans():
 @cross_origin(origin='*',headers=['Content-Type','Authorization'])
 def make_plan():
     payload = request.get_json()
-
+    print(payload["school"])
     timestamp = int(time.time())
     title = payload["title"]
     school = payload["school"]
@@ -189,7 +189,7 @@ def make_plan():
         }
     ).inserted_id
     return json.dumps({"success": True, "data": json.loads(json_util.dumps(plan_id)) }), 200, {"ContentType": "application/json"}
-    # return json.dumps({"success": True}), 200, {"ContentType": "application/json"}, 
+
 
 
 @app.route("/get_plan", methods=["GET"])
