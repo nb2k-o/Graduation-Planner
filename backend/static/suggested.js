@@ -30,7 +30,7 @@ $(document).ready(function () {
         console.log(data.length);
         let plans = ''
         for (let r of data) {  // NEED TO ADD LINK TO PLAN PAGE
-            plans += `<div class="singleplan"> <a href="">   
+            plans += `<div class="singleplan" id=${r._id}>   
             <div class="sort-results-header">
                 <h4>${r.title}</h4>
                 <h7>${r.author_name}</h7>
@@ -64,6 +64,11 @@ $(document).ready(function () {
         }
         
         document.getElementById("search-body").innerHTML = plans;
+        
+        $("#search-body .singleplan").click(function () {
+            sessionStorage.setItem("currentplan", $(this).attr('id'));
+            window.location = "viewplan";
+        })
     }
 
     getSuggestedPlans();

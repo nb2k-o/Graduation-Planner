@@ -6,7 +6,6 @@ $(document).ready(function () {
         window.location.href = '/pages/login';
     }
     console.log(currentUser);
-    // const ids = []
     async function getPopularPlans(){
         let url =
         "http://127.0.0.1:5000/popular_plans"
@@ -16,7 +15,7 @@ $(document).ready(function () {
 
         // Storing data in form of JSON
         var data = await response.json();
-        console.log(data);
+        //console.log(data.data.plans);
         if (response) {
             displayPopularPlans(data.data.plans);
         }
@@ -31,8 +30,7 @@ $(document).ready(function () {
     function displayPopularPlans(data){
         let plans = ''
         for (let i = 0; i < 4; i++) {
-            // ids[i] == data[i].id
-            plans += `<div class="grid-item"> 
+            plans += `<div class="grid-item" id=${data[i]._id}> 
             
             <div id="header"> 
                 <div id="top">
@@ -53,6 +51,11 @@ $(document).ready(function () {
         </div>`;
         }
         document.getElementById("grid-container").innerHTML = plans;
+
+        $("#suggested-plans .grid-item").click(function () {
+            sessionStorage.setItem("currentplan", $(this).attr('id'));
+            window.location = "viewplan";
+        })
     }
 
     // function toPlan(){
@@ -90,6 +93,9 @@ $(document).ready(function () {
     });
     
     getPopularPlans();
+
+    
+    
 
 
 })
