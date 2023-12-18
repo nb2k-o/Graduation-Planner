@@ -140,5 +140,12 @@ $(document).ready(function(){
 
     form.addEventListener('submit', submitPlan);
     document.getElementById('plus').addEventListener('click', addTable)
+    
+    $('.search-bar').on('keypress',function(e) {
+        if(e.which == 13) {
+            let currentSearch = sessionStorage.setItem("currentSearch", $(".search-bar").val());
+            window.location = "search";
+        }
+    });
 
 })

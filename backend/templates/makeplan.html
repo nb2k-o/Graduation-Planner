@@ -12,25 +12,25 @@
 
 <body>
 	<header>
-        <div>
-            <nav id="js-nav" class="nav">
-                <ul class="list">
-                  <li><a href="{{ url_for('template_route', path='landingpage')}}">Home</a></li>
-                  <li><a href="{{ url_for('template_route', path='profile')}}">Profile</a></li>
-                  <li><a href="{{ url_for('template_route', path='login')}}">Logout</a></li>
-                </ul>
-              </nav>
-              <button id="js-hamburger" class="hamburger" type="button">
-                <span id="js-top-line" class="top-line"></span>
-                <span id="js-center-line" class="center-line"></span>
-                <span id="js-bottom-line" class="bottom-line"></span>
-              </button>
-            </div>
+		<div>
+        <nav id="js-nav" class="nav">
+			<ul class="list">
+			  <li><a href="{{ url_for('template_route', path='landingpage')}}">Home</a></li>
+			  <li><a href="{{ url_for('template_route', path='profile')}}">Profile</a></li>
+			  <li><a href="{{ url_for('template_route', path='login')}}">Logout</a></li>
+			</ul>
+		  </nav>
+		  <button id="js-hamburger" class="hamburger" type="button">
+			<span id="js-top-line" class="top-line"></span>
+			<span id="js-center-line" class="center-line"></span>
+			<span id="js-bottom-line" class="bottom-line"></span>
+		  </button>
+		</div>
         <div class="search-bar-container">
-            <input id="search-b" type="button">
+			<input id="search-b" type="button">
             <input type="text" placeholder="Search title, tags, description, author, etc... " class="search-bar">
         </div>
-        <button class="make-plan-button"><a href="{{ url_for('template_route', path='makeplan')}}">Make Plan</a></button>
+        <button id = "make-plan-banner-button" class="make-plan-button"><a href="{{ url_for('template_route', path='makeplan')}}">Make Plan</a></button>
     </header>
   
   <!-- Banner html ends-->
