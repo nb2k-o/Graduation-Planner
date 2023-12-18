@@ -1,52 +1,58 @@
-//$(document).ready(function(){
-//{"title":"","school":"null","major":"null","start_semester":"1","semester_classes":
-//{"Freshman Spring":{"A":"b","c":"d","e":"f","g":"h","i":"j"},
-//"Sophomore Fall":{"k":"l","m":"n","o":"p","q":"r","s":"t"}},"description":"","author_name":"null","author_email":"null","tags":""}
-    // async function getPlan(email, plan_id) {
-    //     let currentUser = sessionStorage.getItem("currentUser");
-    //     let url = "http://127.0.0.1:5000/get_plan?email=" + currentUser + "&" + 
-    //         "plan_id=" + plan_id;
+$(document).ready(function(){
+
+    let id = sessionStorage.getItem("currentplan");
+    if (id == null) {
+        console.log("undefined plan");
+        window.location.href = '/landingpage';
+    }
+    console.log(id);
+
+    async function getPlan(plan_id) {
+        let currentUser = sessionStorage.getItem("currentUser");
+        let url = "http://127.0.0.1:5000/get_plan?email=" + currentUser + "&" + 
+            "plan_id=" + plan_id;
         
-    //     const response = await fetch(url);
-    //     console.log(url);
-    //     var data = await response.json();
-    //     console.log(data);
-    //     showData(data)
+        const response = await fetch(url);
+        console.log(url);
+        var data = await response.json();
+        console.log(data);
+        showData(data.data)
 
-    //     let urlcom = "http://127.0.0.1:5000/get_comments?plan_id=" + plan_id;
-    //     const responsecom = await fetch(urlcom);
-    //     console.log(url);
-    //     var datacom = await responsecom.json();
-    //     console.log(datacom);
-    //     showComments(datacom)
-        
-    // }
-
-    const init = function(){
-        data = {
-            "title": "Chill first year",
-            "school": "Columbia College",
-            "major": "Computer Science",
-            "description": "This is a chill plan for first years",
-            "author_name": "Nigel K.",
-            "tags": "#fun #great",
-            "likes": 7,
-            "comments": 2,
-            "semester_classes": {
-                "Freshman Fall": {"Java":"CS", "LitHum":"Core", "UW": "Core", "UW": "Core", "UW": "Core"}, 
-                "Freshman Spring": {"Data Structures":"CS", "LitHum":"Core", "UW": "Core", "UW": "Core", "UW": "Core"}
-            }
-
-        }
-        showData(data)
-
-        comments = {
-            "Miira E": "This plan was so great for my freshman year",
-            "Ola O": "This plan gave me time to apply to clubs and internships"
-        }
-        showComments(comments)
+        let urlcom = "http://127.0.0.1:5000/get_comments?plan_id=" + plan_id;
+        const responsecom = await fetch(urlcom);
+        console.log(url);
+        var datacom = await responsecom.json();
+        console.log(datacom);
+        showComments(datacom.data)
         
     }
+    getPlan(id)
+
+
+    // const init = function(){
+    //     var id = sessionStorage.getItem('currentplan');
+    //     // data = {
+    //     //     "title": "Chill first year",
+    //     //     "school": "Columbia College",
+    //     //     "major": "Computer Science",
+    //     //     "description": "This is a chill plan for first years",
+    //     //     "author_name": "Nigel K.",
+    //     //     "tags": "#fun #great",
+    //     //     "likes": 7,
+    //     //     "comments": 2,
+    //     //     "semester_classes": {
+    //     //         "Freshman Fall": {"Java":"CS", "LitHum":"Core", "UW": "Core", "UW": "Core", "UW": "Core"}, 
+    //     //         "Freshman Spring": {"Data Structures":"CS", "LitHum":"Core", "UW": "Core", "UW": "Core", "UW": "Core"}
+    //     //     }
+
+    //     // }
+    //     showData(data)
+    //     comments = {
+    //         "Miira E": "This plan was so great for my freshman year",
+    //         "Ola O": "This plan gave me time to apply to clubs and internships"
+    //     }
+    //     showComments(comments)
+    // }
 
     function showData(data) {
         document.getElementById('plan-name').innerHTML = data.title;
@@ -59,25 +65,28 @@
         document.getElementById('likes').innerHTML = data.likes;
         document.getElementById('comments').innerHTML = data.comments;
 
-        //alert(data.semester_classes)
-        const keys = Object.keys(data.semester_classes);
+        // alert(data.semester_classes)
+        const keys = data.semester_classes;
+        alert(keys.length)
         for (let i = 0; i < keys.length; i++) {
-            const key = keys[i];
-            
+            const title = keys[i]["title"];
+            console.log(title)
             let table = ''
-            table += `<div id="tableline"><text>${key}</text> 
+            table += `<div id="tableline"><text>${title}</text> 
                 <table>
                   <tr>
                     <th>Class</th>
                     <th>Reason</th> 
                   </tr>`
 
-            const innerkey = Object.keys(data.semester_classes[key]);
+            const innerkey = keys[i]["classes"];
             for(let j = 0; j < innerkey.length; j++) {
-                const inkey = innerkey[j]
+                const c = innerkey[j]["Class"]
+                const r = innerkey[j]["Reason"]
+                console.log(c + " " + r)
                 table += `<tr>
-                    <td><input type="text" id="table-entry">${inkey}</td>
-                    <td><input type="text" id="table-entry"/>${data.semester_classes[key][inkey]}</td> 
+                    <td><input type="text" class="table-entry">${c}</td>
+                    <td><input type="text" class="table-entry"/>${r}</td> 
                     </tr>`
             }
             table += `</table></div>`
@@ -102,10 +111,10 @@
             document.getElementById('prev-comments').innerHTML += comment;
         }
         
-        alert(comment)
+        // alert(comment)
 
     }
 
-//})
+})
 
-document.addEventListener("DOMContentLoaded", init);
+// document.addEventListener("DOMContentLoaded", init);
