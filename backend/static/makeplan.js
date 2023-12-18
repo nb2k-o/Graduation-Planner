@@ -15,7 +15,6 @@ $(document).ready(function(){
             alert(`Please fill in the starting semester.`)
             return
         }
-        console.log(istart)
         const container = document.getElementById("tableline");
         const elementToClone = document.getElementById("original-table");
         const clonedElement = elementToClone.cloneNode(true);
@@ -38,7 +37,7 @@ $(document).ready(function(){
 
         e.preventDefault();
     
-        semesters = ["Freshman Fall", "Freshman Spring", "Sophomore Fall", "Sophomore Spring", "Junior Fall", "Junior Spring", "Senior Fall", "Senior Spring"]
+        semesters = ["0 index", "Freshman Fall", "Freshman Spring", "Sophomore Fall", "Sophomore Spring", "Junior Fall", "Junior Spring", "Senior Fall", "Senior Spring"]
         
         let iname = document.getElementById('plan-form').value;
         let itags = document.getElementById('tag').value;
@@ -47,34 +46,41 @@ $(document).ready(function(){
         let imajor = document.getElementById('majors').value;
         let istart = document.getElementById('starts').value;
 
-        var tbls = {}
+        var tbls = []
         let elms = document.getElementsByName("class-table");
         
         for(var i = 0; i < elms.length; i++) {
             let vals = elms.item(i);
             let cla = vals.getElementsByTagName("input"); 
+            let cla_reason = vals.getElementsByTagName("textarea");
             var thissem = []
-            for (var j = 0; j < cla.length-1; j+=2){
+            for (var j = 0; j < cla.length; j++){
                 var c = {}
                 c["Class"] = cla[j].value
-                c["Reason"] = cla[j+1].value
-                thissem += c
+                c["Reason"] = cla_reason[j].value
+                thissem.push(c)
             }
-            let semind = parseInt(start) + i
-            tbls[semesters[semind]] = [thissem]   
+            let semind = parseInt(istart) + i
+            let full_sem = {"title":semesters[semind], "classes":thissem}
+            tbls.push(full_sem)
         }
         
         let currentUser = sessionStorage.getItem("currentUser");
         
         let email = currentUser
         let name = await getName(currentUser)
-        console.log(iname)
         var jsonData = {}
         jsonData["title"] = iname
         jsonData["school"] = icollege
         jsonData["major"] = imajor
-        jsonData["semesters"] = istart
-        jsonData["semester_classes"] = '[' + JSON.stringify(tbls) + ']'
+        if (tbls.length == 1){
+            jsonData["semesters"] = semesters[parseInt(istart)]
+        }
+        else{
+            let sem_num = parseInt(istart) + tbls.length
+            jsonData["semesters"] = semesters[parseInt(istart)] + " - " + semesters[sem_num]
+        }
+        jsonData["semester_classes"] = tbls
         jsonData["description"] = idesc
         jsonData["author_name"] = name
         jsonData["author_email"] = email
@@ -84,13 +90,13 @@ $(document).ready(function(){
             alert("Please make sure all fields are filled out.")
             return
         }
+
         postJson(jsonData)
         
     }
 
 
     async function postJson(jsonData){
-
         const url = `http://127.0.0.1:5000/make_plan`;
         
             fetch(url, {
