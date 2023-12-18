@@ -294,8 +294,15 @@ def primary_suggested_plans():
     response_data = {}
     user = serialize_object_response(user_collection.find_one({"email": email}))
     response_data["plan_type"] = user["major"]
-    data = serialize_cursor_response(plan_collection.find({"major": user["major"]}))
+    data = serialize_cursor_response(plan_collection.find({"major": user["major"], "school": user["school"]}).limit(5))
     response_data["plans"] = data
+
+    if len(data) == 0:
+        response_data = {}
+        user = serialize_object_response(user_collection.find_one({"email": email}))
+        response_data["plan_type"] = user["school"]
+        data = serialize_cursor_response(plan_collection.find({"school": user["school"]}).limit(3))
+        response_data["plans"] = data
 
     return (
         json.dumps({"success": True, "data": response_data}),

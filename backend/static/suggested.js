@@ -58,6 +58,10 @@ $(document).ready(function () {
         </div>
         <br>`;
         }
+
+        if(data.length == 0){
+            plans += `<div>We don't have any plans for you right now. Come back later.</div>`
+        }
         
         document.getElementById("search-body").innerHTML = plans;
     }
