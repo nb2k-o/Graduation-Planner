@@ -31,7 +31,7 @@ $(document).ready(function () {
     function displayPopularPlans(data){
         let plans = ''
         for (let i = 0; i < 4; i++) {
-            ids [i] == data[i].id
+            // ids[i] == data[i].id
             plans += `<div class="grid-item"> 
             
             <div id="header"> 
