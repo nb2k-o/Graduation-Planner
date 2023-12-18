@@ -90,6 +90,6 @@ $(document).ready(function () {
     });
     
     getPopularPlans();
-    
+
 
 })

@@ -102,8 +102,7 @@ $(document).ready(function(){
   // Call the function with the array to generate options
   const info = 
     {
-      school: ["Columbia College", "Fu Foundation School of Engineering and Applied Science", "School of General Studies",
-       "Barnard College"],
+      school: ["Columbia College", "SEAS", "School of General Studies", "Barnard College"],
       major: ["African American & African Diaspora Studies",
       "American Studies",
       "Ancient Studies",
