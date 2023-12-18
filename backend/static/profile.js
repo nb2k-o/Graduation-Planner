@@ -64,7 +64,7 @@ $(document).ready(function () {
 
         // Storing data in form of JSON
         var data = await response.json();
-        showPlan(data.data);
+        showPlan(data.data,plan_type);
     }
 
     async function deletePlan(id) {
@@ -100,38 +100,72 @@ $(document).ready(function () {
     }
 
     // Function to define innerHTML for HTML table
-    function showPlan(data) {
+    function showPlan(data, plan_type) {
         console.log(data);
         let plans = ''
-        for (let r of data) {
-            plans += `<div class="singleplan" id=${r._id}>
-            <div class="sort-results-header">
-                <h4>${r.title}</h4>
-                <h7>${r.author_name}</h7>
-            </div>
-            <br>
-            <div class="plan-info">
-                <div class="menu-item">${r.school}</div>
-                <div class="menu-item">${r.major}</div>
-                <div class="menu-item">${r.semesters}</div>
-            </div>
-            <h5>Description...</h5>
-            <br>
-            <div class="description-box"> ${r.description}
-            </div>
-            <div class="images-container">
-                    <div class="counts"><img class="images" src="../static/heart.png"/> 
-                        <div class="count">${r.likes}</div></div>
-                     
-                        <div class="counts"><img class="images" src="../static/comment.png"/> <div class="count">${r.comments}</div> </div>
-                </div>
-            <br>
-            <div class="tags-group">
-                <div class="tags"> <a href="">${r.tags}</a></div>
 
-            </div><button class="delete-plan-button" id=${r._id}>Delete</button>
-        </div> 
-        <br>`;
+        if(plan_type == "created_plans"){
+            for (let r of data) {
+                plans += `<div class="singleplan" id=${r._id}>
+                <div class="sort-results-header">
+                    <h4>${r.title}</h4>
+                    <h7>${r.author_name}</h7>
+                </div>
+                <br>
+                <div class="plan-info">
+                    <div class="menu-item">${r.school}</div>
+                    <div class="menu-item">${r.major}</div>
+                    <div class="menu-item">${r.semesters}</div>
+                </div>
+                <h5>Description...</h5>
+                <br>
+                <div class="description-box"> ${r.description}
+                </div>
+                <div class="images-container">
+                        <div class="counts"><img class="images" src="../static/heart.png"/> 
+                            <div class="count">${r.likes}</div></div>
+                        
+                            <div class="counts"><img class="images" src="../static/comment.png"/> <div class="count">${r.comments}</div> </div>
+                    </div>
+                <br>
+                <div class="tags-group">
+                    <div class="tags"> <a href="">${r.tags}</a></div>
+
+                </div><button class="delete-plan-button" id=${r._id}>Delete</button>
+            </div> 
+            <br>`;
+            }
+        }else{
+            for (let r of data) {
+                plans += `<div class="singleplan" id=${r._id}>
+                <div class="sort-results-header">
+                    <h4>${r.title}</h4>
+                    <h7>${r.author_name}</h7>
+                </div>
+                <br>
+                <div class="plan-info">
+                    <div class="menu-item">${r.school}</div>
+                    <div class="menu-item">${r.major}</div>
+                    <div class="menu-item">${r.semesters}</div>
+                </div>
+                <h5>Description...</h5>
+                <br>
+                <div class="description-box"> ${r.description}
+                </div>
+                <div class="images-container">
+                        <div class="counts"><img class="images" src="../static/heart.png"/> 
+                            <div class="count">${r.likes}</div></div>
+                        
+                            <div class="counts"><img class="images" src="../static/comment.png"/> <div class="count">${r.comments}</div> </div>
+                    </div>
+                <br>
+                <div class="tags-group">
+                    <div class="tags"> <a href="">${r.tags}</a></div>
+
+                </div>
+            </div> 
+            <br>`;
+            }
         }
         
         document.getElementById("plans-box").innerHTML = plans;

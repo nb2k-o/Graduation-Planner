@@ -17,6 +17,7 @@ $(document).ready(function () {
         var data = await response.json();
         //console.log(data.data.plans);
         if (response) {
+            
             displayPopularPlans(data.data.plans);
         }
         else {
@@ -24,12 +25,15 @@ $(document).ready(function () {
         }
     }
 
-    console.log(getPopularPlans());
+   
 
 
     function displayPopularPlans(data){
         let plans = ''
         for (let i = 0; i < 4; i++) {
+            if (i >= data.length){
+                continue
+            }
             plans += `<div class="grid-item" id=${data[i]._id}> 
             
             <div id="header"> 
@@ -93,9 +97,6 @@ $(document).ready(function () {
     });
     
     getPopularPlans();
-
-    
-    
 
 
 })
