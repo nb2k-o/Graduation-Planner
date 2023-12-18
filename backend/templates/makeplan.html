@@ -10,8 +10,6 @@
 
 </head>
 
-
-
 <body>
 	<header>
         <div>
@@ -49,9 +47,6 @@
     	<br>
     	
     	<div id ="dropdown-line">
-    		<!--<span id = "college">College</span>
-    		<span id = "major">Major</span>
-    		<span id= "tags">Tags</span>-->
     		
     		<label id="college">College:</label> 
     		<label id="major">Major:</label> 
@@ -91,7 +86,6 @@
     		<label id="start">Starting Semester:</label>
     		<br>
     		<select id="starts"> 
-    			<option value="null"></option> 
     			<option value="1">1</option> 
     			<option value="2">2</option> 
         		<option value="3">3</option> 
@@ -101,38 +95,42 @@
         		<option value="7">7</option> 
         		<option value="8">8</option> 
     		</select>
+			<button type = "button" id = "plus"><img id="plus" src= "../static/plusicon.png"></button>
     	</div>
     	<br>
     	<br>
     	<div id="tableline">
-    	<table id = "original-table" name = "class-table">
+    	<table id = "original-table" name = "class-table" style="width:600px">
   			<tr>
     			<th>Class</th>
     			<th>Reason</th> 
   			</tr>
   			<tr>
-    			<td><input type="text" name="class-entry"></td>
-    			<td><input type="text" name="reason-entry"/></td> 
+    			<td><input type="text" name="class-entry" style="width:100px"></td>
+    			<td><textarea maxlength=150 type="text" name="reason-entry" style="width:500px"/></textarea></td> 
+  			</tr> 
   			</tr>
   			<tr>
-    			<td><input type="text" name="class-entry"></td>
-    			<td><input type="text" name="reason-entry"/></td> 
+    			<td><input type="text" name="class-entry" style="width:100px"></td>
+    			<td><textarea maxlength=150 type="text" name="reason-entry" style="width:500px"/></textarea></td> 
+  			</tr> 
   			</tr>
   			<tr>
-    			<td><input type="text" name="class-entry"></td>
-    			<td><input type="text" name="reason-entry"/></td> 
+    			<td><input type="text" name="class-entry" style="width:100px"></td>
+    			<td><textarea maxlength=150 type="text" name="reason-entry" style="width:500px"/></textarea></td> 
   			</tr>
   			<tr>
-    			<td><input type="text" name="class-entry"></td>
-    			<td><input type="text" name="reason-entry"/></td> 
+    			<td><input type="text" name="class-entry" style="width:100px"></td>
+    			<td><textarea maxlength=150 type="text" name="reason-entry" style="width:500px"/></textarea></td> 
+  			</tr> 
   			</tr>
   			<tr>
-    			<td><input type="text" name="class-entry"></td>
-    			<td><input type="text" name="reason-entry"/></td> 
+    			<td><input type="text" name="class-entry" style="width:100px"></td>
+    			<td><textarea maxlength=150 type="text" name="reason-entry" style="width:500px"/></textarea></td> 
+  			</tr> 
   			</tr>
 		</table>
 		
-		<button type = "button" id = "plus" onClick="addTable()"><img id="plus" src= "../static/plusicon.png"></button>
 		</div>
 		
 		<br>

@@ -1,14 +1,38 @@
 $(document).ready(function(){
 
+    var form = document.getElementById("makeplan");
+    let count = 1
+
     function addTable(){
-        
+
+        let istart = document.getElementById('starts').value;
+
+        if (count > 8-istart){
+          
+            alert(`You can only add ${9-istart} semester(s).`)
+            return
+        }  else if (istart == "null"){
+            alert(`Please fill in the starting semester.`)
+            return
+        }
+        console.log(istart)
         const container = document.getElementById("tableline");
         const elementToClone = document.getElementById("original-table");
         const clonedElement = elementToClone.cloneNode(true);
-        container.appendChild(clonedElement);
-    }
 
-    var form = document.getElementById("makeplan");
+        var InputType = clonedElement.getElementsByTagName("textarea");
+
+        for (var i=0; i<InputType.length; i++){
+         if( InputType[i].type=='checkbox'){
+            InputType[i].checked = false;  
+        }else{
+           InputType[i].value='';               
+            }
+        }
+
+        container.appendChild(clonedElement);
+        count += 1
+    }
 
     async function submitPlan(e){
 
@@ -56,7 +80,7 @@ $(document).ready(function(){
         jsonData["author_email"] = email
         jsonData["tags"] = itags
 
-        if (!(iname && icollege && imajor && istart && tbls && idesc && name && email &&itags)){
+        if (!(iname && icollege != "null" && imajor != "null" && istart != "null" && tbls && idesc && name && email &&itags)){
             alert("Please make sure all fields are filled out.")
             return
         }
@@ -109,5 +133,6 @@ $(document).ready(function(){
     }
 
     form.addEventListener('submit', submitPlan);
+    document.getElementById('plus').addEventListener('click', addTable)
 
 })

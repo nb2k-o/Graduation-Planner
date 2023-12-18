@@ -514,14 +514,6 @@ input#table-entry {
   margin-right: 30px;
 }
 
-td {
-  border: 1px solid;
-  border-color: #005CA1; 
-  border-collapse: collapse;
-  width: auto;
-  height:40px;
-}
-
 th {
   background-color: #005CA1; 
   color: #FFFFFF;
@@ -529,13 +521,6 @@ th {
   height:20px;
 }
 
-td {
-  border: 1px solid;
-  border-color: #005CA1; 
-  border-collapse: collapse;
-  width: auto;
-  height:40px;
-}
 .interactions-container {
   display: flex;
   flex-direction: row;
@@ -661,7 +646,7 @@ div#main {
 
 div#main-content { 
   background-color: #E3F0FF; 
-  height: 100%;
+  height: fit-content;
   width: 100%;
   padding:30;
   margin-right: 30px;
@@ -746,6 +731,7 @@ th {
  font-weight: normal;
  height:20px;
 }
+
 td {
  border: 1px solid;
  border-color: #005CA1; 
@@ -754,15 +740,24 @@ td {
  height:40px;
 }
 
-input[name="reason-entry"] {
- padding:0;
- margin:2;
- width:96px;
- height:36px;
- background-color: transparent;
- border:none;
- word-wrap: break-word;
-   word-break: break-all;
+textarea[name="reason-entry"] {
+  padding: 0 12;
+  margin: 0 -14 0 2;
+  width:96px;
+  height:36px;
+  background-color: transparent;
+  border:none;
+  word-wrap: break-word;
+  word-break: break-all;
+  text-wrap: wrap;
+  outline: none;
+}
+
+div#tableline {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 50px 
 }
 
 input[name="class-entry"] {
@@ -773,7 +768,8 @@ input[name="class-entry"] {
   background-color: transparent;
   border:none;
   word-wrap: break-word;
-    word-break: break-all;
+  word-break: break-all;
+  outline: none;
  }
  
 
