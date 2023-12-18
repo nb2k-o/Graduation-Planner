@@ -77,7 +77,7 @@ div#banner-content {
     height: 50;
 }
 
-input#search {
+/* input#search {
     border-radius: 25px;
     padding: 5px;
     background-color: #E3F0FF; 
@@ -87,7 +87,7 @@ input#search {
     background-image: url("/static/search.png");
     text-indent: 20px;
     
-}
+} */
 
 button {
     background-color: transparent;
@@ -149,7 +149,7 @@ span#links{
     align-items: middle;
 }
 
-button#options{
+button#make-plan-button{
     background-color: #FFFFFF;
     color: #005CA1;
     height: 70;
@@ -278,3 +278,4 @@ div#top {
     margin-left: 5px;
     margin-right: 5px;
 }
+

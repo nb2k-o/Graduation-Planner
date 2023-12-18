@@ -6,6 +6,7 @@ from pymongo.mongo_client import MongoClient
 from bson.objectid import ObjectId
 from utils import serialize_object_response, serialize_cursor_response
 from flask_cors import CORS, cross_origin
+from bson import json_util
 
 
 uri = "mongodb+srv://root:admin@cluster0.j76mx.mongodb.net/?retryWrites=true&w=majority"
@@ -171,7 +172,7 @@ def make_plan():
     tags = payload["tags"]
     semester_classes = payload["semester_classes"]
 
-    plan_collection.insert_one(
+    plan_id = plan_collection.insert_one(
         {
             "timestamp": timestamp,
             "title": title,
@@ -186,9 +187,9 @@ def make_plan():
             "comments": 0,
             "semester_classes": semester_classes
         }
-    )
-
-    return json.dumps({"success": True}), 200, {"ContentType": "application/json"}
+    ).inserted_id
+    return json.dumps({"success": True, "data": json.loads(json_util.dumps(plan_id)) }), 200, {"ContentType": "application/json"}
+    # return json.dumps({"success": True}), 200, {"ContentType": "application/json"}, 
 
 
 @app.route("/get_plan", methods=["GET"])

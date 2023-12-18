@@ -6,7 +6,7 @@ $(document).ready(function () {
         window.location.href = '/pages/login';
     }
     console.log(currentUser);
-
+    // const ids = []
     async function getPopularPlans(){
         let url =
         "http://127.0.0.1:5000/popular_plans"
@@ -31,7 +31,9 @@ $(document).ready(function () {
     function displayPopularPlans(data){
         let plans = ''
         for (let i = 0; i < 4; i++) {
+            ids [i] == data[i].id
             plans += `<div class="grid-item"> 
+            
             <div id="header"> 
                 <div id="top">
                     <span class= "name">${data[i].title}</span>
@@ -47,12 +49,17 @@ $(document).ready(function () {
                     <label class= "comments"><img src="../static/comment.png" class="planicon">${data[i].comments}</label>
                 </div>
             </div>
+            
         </div>`;
         }
         document.getElementById("grid-container").innerHTML = plans;
     }
 
-    
+    // function toPlan(){
+    //     window.location= "viewplan/";
+
+    // }
+
     $("#suggested-button").click(function () {
         window.location = "suggestedplans";
     })
@@ -60,6 +67,15 @@ $(document).ready(function () {
     $("#profile-button").click(function () {
         window.location= "profile";
     })
+
+    $("#make-plan-button").click(function () {
+        window.location= "makeplan";
+    })
+
+    $("#make-plan-banner-button").click(function () {
+        window.location= "makeplan";
+    })
+
 
     $("#search-b").click(function () {
         let currentSearch = sessionStorage.setItem("currentSearch", $(".search-bar").val());
