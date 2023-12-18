@@ -5,12 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/styles2.css">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="/static/hamburger.js"></script>
     <script src="/static/search.js"></script>
     <title>Search Banner</title>
 </head>
 <body>
     <header>
-        <div class="menu-button">☰</div>
+        <div>
+            <nav id="js-nav" class="nav">
+                <ul class="list">
+                  <li><a href="{{ url_for('template_route', path='landingpage')}}">Home</a></li>
+                  <li><a href="{{ url_for('template_route', path='profile')}}">Profile</a></li>
+                  <li><a href="{{ url_for('template_route', path='login')}}">Logout</a></li>
+                </ul>
+              </nav>
+              <button id="js-hamburger" class="hamburger" type="button">
+                <span id="js-top-line" class="top-line"></span>
+                <span id="js-center-line" class="center-line"></span>
+                <span id="js-bottom-line" class="bottom-line"></span>
+              </button>
+            </div>
         <div class="search-bar-container">
 			<input id="search-b" type="button">
             <input type="text" placeholder="Search title, tags, description, author, etc... " class="search-bar">
@@ -31,13 +45,13 @@
     <div class ="filters">
         <span>Filter by:</span>
         <select class="dropdown1">
-            <option value="null">College</option> 
+            <option value="null">School</option> 
             <option value="Columbia College">Columbia College</option> 
             <option value="SEAS">SEAS</option> 
             <option value="Barnard College">Barnard College</option> 
             <option value="General Studies">General Studies</option> 
         </select>
-        <select class="dropdown2"> 
+        <select id="dropdown2" class="dropdown2"> 
             <option value="null">Major</option> 
             <option value="Computer Science">Computer Science</option> 
             <option value="Psychology">Psychology</option> 

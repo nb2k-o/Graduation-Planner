@@ -74,6 +74,6 @@ $(document).ready(function () {
     });
     
     getPopularPlans();
-    
+
 
 })

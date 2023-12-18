@@ -61,6 +61,7 @@ h1 {
   border: none;
   padding: 8px 16px;
   cursor: pointer;
+  font-size: 13px;
 }
 
 .page-top {
@@ -795,4 +796,83 @@ button#submit {
  height: 30;
  float: left;
  margin-left: 30;
+}
+
+.nav {
+  background: #005CA1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100vh;
+  transition: transform 0.7s, opacity 1s;
+  transform: translateX(-100%);
+  opacity: 0;
+  color: #ffffff;
+}
+
+.nav.show {
+  transform: translateX(0%);
+  opacity: 1;
+  z-index: 1;
+}
+
+.nav a {
+  color: white;
+  text-decoration: none;
+}
+
+.nav .list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+}
+
+.nav .list li {
+  margin: 1.5rem auto;
+  font-size: 1.25rem;
+  color: white;
+}
+
+.hamburger {
+  position: relative;
+  margin-left: auto;
+  width: 45px;
+  height: 35px;
+  z-index: 1;
+}
+
+.hamburger span {
+  position: absolute;
+  left: 0;
+  background: #ffffff;
+  width: inherit;
+  height: 5px;
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+.top-line {
+  top: 0px;
+}
+
+.center-line {
+  top: 15px;
+}
+
+.bottom-line {
+  bottom: 0px;
+}
+
+.top-line.active {
+  transform: translateY(15px) rotate(45deg);
+}
+
+.center-line.active {
+  opacity: 0;
+}
+
+.bottom-line.active {
+  transform: translateY(-15px) rotate(-45deg);
 }
