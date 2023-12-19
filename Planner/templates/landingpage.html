@@ -1,0 +1,59 @@
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="/static/hamburger.js"></script>
+    <script src="/static/landingpage.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Landing Page</title>
+	<link rel="stylesheet" href="/static/styles.css">
+    <!-- <style type="text/css" media="screen">
+
+    </style> -->
+</head>
+
+
+<body>
+	<header>
+		<div>
+        <nav id="js-nav" class="nav">
+			<ul class="list">
+			  <li><a href="{{ url_for('template_route', path='landingpage')}}">Home</a></li>
+			  <li><a href="{{ url_for('template_route', path='profile')}}">Profile</a></li>
+			  <li><a href="{{ url_for('template_route', path='login')}}">Logout</a></li>
+			</ul>
+		  </nav>
+		  <button id="js-hamburger" class="hamburger" type="button">
+			<span id="js-top-line" class="top-line"></span>
+			<span id="js-center-line" class="center-line"></span>
+			<span id="js-bottom-line" class="bottom-line"></span>
+		  </button>
+		</div>
+        <div class="search-bar-container">
+			<input id="search-b" type="button">
+            <input type="text" placeholder="Search title, tags, description, author, etc... " class="search-bar">
+        </div>
+        <button id = "make-plan-banner-button" class="make-plan-button"><a href="{{ url_for('template_route', path='makeplan')}}">Make Plan</a></button>
+    </header>
+	<div id="main">
+  		<p id=title>Welcome to Graduation Planner!</p>
+    	<div id="main-options" >
+    		<span id = "links">
+    			<button type="button" id="suggested-button">Find Suggested Plans</button>
+    			<button type="button" id="profile-button">View Profile</button>
+    			<button type="button" id="make-plan-button">Create New Plan</button>
+    		</span>
+    	</div>
+    	<br>
+    	<br>
+    	<div id= "suggested-plans">
+    		<br>
+    		
+    		<label id= "find-pop">Popular Columbia Graduation Plans</label>
+    		<div id= "grid-container"> 
+    			
+    		</div>
+    	</div>
+    </div>
+</body>
+</html>
+    
