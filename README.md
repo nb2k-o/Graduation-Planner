@@ -9,6 +9,11 @@ Open Terminal and navigate to project root directory.
 ### Activate virtual environment for server
 ```cd/venv/Scripts```
 ```activate.bat OR activate```
+If that didn't work and you have a Mac, try
+```source venv/bin/activate```
+
+### Install required packages
+```pip install -r requirements.txt```
 
 ### Deactivate virtual environment for server
 ```cd/venv/Scripts```
