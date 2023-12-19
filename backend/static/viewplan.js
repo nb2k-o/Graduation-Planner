@@ -202,9 +202,9 @@ $(document).ready(function(){
 
     // post comment
     $('.comment-input-box').on('keypress',function(e) {
+        console.log("fkbnkjdfk")
         if(e.which == 13) {
-            let comment = $(".comment-input-box").val();
-            ('.comment-input-box').val('');
+            let comment = $(this).val();
             getJsonData(comment);
         }
     });

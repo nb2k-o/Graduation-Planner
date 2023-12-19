@@ -481,14 +481,12 @@ h8  {  /** plan on plan pg author **/
   word-break: break-all;
 }
 
-input{
-  background-color: #FFFFFF;
+#main-content input{
   width: 180;
   height:25;
   margin-top: 10;
   margin-left:30;
   font-size: 14;
-  
 
 }
 
@@ -690,8 +688,7 @@ p#title{
  padding-bottom: 20px;
 }
 
-input{
- background-color: #FFFFFF;
+#main-content input{
  width: 180px;
  height:25px;
  margin-top: 10px;
@@ -710,7 +707,7 @@ label#major {
 label#tags {
  padding-left: 170px;
 }
-select {
+#main-content select {
  width: 180px;
  font-size: 20px;
  margin-left: 30px;
@@ -733,7 +730,6 @@ input#desc-inp {
 }
 textarea {
  background-color: #FFFFFF;
- 
  margin-top: 10px;
  margin-left:30px;
  font-size: 14;
@@ -771,9 +767,8 @@ td {
 }
 
 textarea[name="reason-entry"] {
-  padding: 0 12;
-  margin: 0 -14 0 2;
-  width:96px;
+  margin: 0px 4px 0px 2px;
+  width: 450px !important;
   height:36px;
   background-color: transparent;
   border:none;
