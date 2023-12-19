@@ -1,6 +1,6 @@
 # Graduation-Planner
 
-## To Run BACKEND in virtual environment (navigate to backend directory):
+## To Run BACKEND in virtual environment (navigate to Planner directory):
 Open Terminal and navigate to project root directory.
 
 ### ONE TIME INSTALLATION:
