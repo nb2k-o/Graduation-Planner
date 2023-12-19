@@ -270,7 +270,7 @@ def comment_plan():
         {'$inc': {'comments': 1}}
     )
 
-    return json.dumps({"success": True}), 200, {"ContentType": "application/json"}
+    return json.dumps({"success": True, "data": payload}), 200, {"ContentType": "application/json"}
 
 
 @app.route("/get_comments", methods=["GET"])

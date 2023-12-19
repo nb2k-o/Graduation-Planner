@@ -459,16 +459,15 @@ h8  {  /** plan on plan pg author **/
 }
 
 .plan-body {
-  display: block;
+  display: flex;
   background-color: #E3F0FF; 
   width: 700px;
   height: 300px;
   padding:20px;
   margin-right: 30px;
   margin-left: 30px;
-  padding: 80px;
+  padding: 100px 80px;
   align-items: center;
-  display: inline-block;
 }
 
 .table-entry {
@@ -555,6 +554,11 @@ th {
   margin-left: 30px;
   position: relative;
   align-items: center;
+  overflow:scroll; 
+}
+
+.prev-comments {
+  overflow:auto; 
 }
 
 .comment-bar-container {
@@ -566,6 +570,22 @@ th {
   width: 700px;
   position: absolute;
   bottom:10px;
+  margin-bottom: -450px;
+}
+
+.comment-input-box {
+  padding: 8px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  width: 300px;
+
+  /**
+  padding: 8px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  width: 300px; */
 }
 
 .comment {
