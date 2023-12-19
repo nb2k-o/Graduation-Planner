@@ -147,24 +147,6 @@ $(document).ready(function(){
         });
     }
 
-    const validateEmail = (email) => {
-      return email.match(
-        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
-    };
-
-    const isYearValid = (inputYear) => {
-
-      const currentYear = new Date().getFullYear();
-      const year = parseInt(inputYear, 10);
-    
-      if (!isNaN(year) && year <= currentYear+4) {
-        return true; 
-      } else {
-        return false;
-      }
-    }
-
 
   // Call the function with the array to generate options
   const info = ["African American & African Diaspora Studies",
