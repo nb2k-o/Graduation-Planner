@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
     var form = document.getElementById("makeplan");
-    let count = 1
+    let count = $('[name=class-table]').length
 
     function addTable(){
 
@@ -9,7 +9,7 @@ $(document).ready(function(){
 
         if (count > 8-istart){
           
-            alert(`You can only add ${9-istart} semester(s).`)
+            alert(`You can only add ${9-istart} semester(s) to your plan.`)
             return
         }  else if (istart == "null"){
             alert(`Please fill in the starting semester.`)
@@ -30,7 +30,7 @@ $(document).ready(function(){
         }
 
         container.appendChild(clonedElement);
-        count += 1
+        count = $('[name=class-table]').length
     }
 
     async function submitPlan(e){
@@ -45,6 +45,11 @@ $(document).ready(function(){
         let icollege = document.getElementById('colleges').value;
         let imajor = document.getElementById('majors').value;
         let istart = document.getElementById('starts').value;
+
+        if (count-1 >  8-istart){
+            alert(`You can only add ${9-istart} semester(s) to your plan.`)
+            return
+        }
 
         var tbls = []
         let elms = document.getElementsByName("class-table");
@@ -147,5 +152,118 @@ $(document).ready(function(){
             window.location = "search";
         }
     });
+
+    function generateOptions(data,name) {
+        const select = document.getElementById(name);
+
+        const options = data.map(ele => {
+        const option = document.createElement('option');
+        option.value = ele;
+        option.text = ele;
+        return option;
+        });
+
+        // Append generated options to the select element
+        options.forEach(option => {
+        select.appendChild(option);
+        });
+    }
+
+
+  // Call the function with the array to generate options
+  const info = ["African American & African Diaspora Studies",
+      "American Studies",
+      "Ancient Studies",
+      "Anthropology",
+      "Applied Mathematics",
+      "Applied Physics and Applied Mathematics	",
+      "Archaeology",
+      "Architecture",
+      "Art History",
+      "Art History & Visual Arts",
+      "Astronomy",
+      "Astrophysics",
+      "Biochemistry",
+      "Biology",
+      "Biomedical Engineering",
+      "Biophysics",
+      "Chemical Engineering	",
+      "Chemical Physics",
+      "Chemistry",
+      "Civil Engineering and Engineering Mechanics",
+      "Classical Studies",
+      "Classics",
+      "Climate System Science",
+      "Cognitive Science",
+      "Comparative Literature and Society",
+      "Computer Engineering	",
+      "Computer Science",
+      "Computer Science - Mathematics",
+      "Creative Writing",
+      "Dance",
+      "Data Science",
+      "Drama and Theatre Arts",
+      "Earth & Environmental Engineering	",
+      "Earth Science",
+      "East Asian Studies",
+      "Economics",
+      "Economics - Mathematics",
+      "Economics - Philosophy",
+      "Economics - Political Science",
+      "Economics - Statistics",
+      "Electrical Engineering",
+      "Engineering Mechanics	",
+      "English",
+      "Environmental Biology",
+      "Environmental Chemistry",
+      "Environmental Science",
+      "Ethnicity and Race Studies",
+      "Evolutionary Biology of the Human Species",
+      "Film and Media Studies",
+      "Financial Economics",
+      "French",
+      "French & Francophone Studies",
+      "German Literature & Cultural History",
+      "Hispanic Studies",
+      "History",
+      "History and Theory of Architecture",
+      "Human Rights",
+      "Industrial Engineering and Operations Research",
+      "Information Science",
+      "Italian",
+      "Latin American and Caribbean Studies",
+      "Linguistics",
+      "Materials Science and Engineering	",
+      "Mathematics",
+      "Mathematics - Statistics",
+      "Mechanical Engineering",
+      "Medical Humanities",
+      "Middle Eastern, South Asian & African Studies",
+      "Music",
+      "Neuroscience & Behavior",
+      "Operations Research: Engineering Management Systems",
+      "Operations Research: Financial Engineering",
+      "Philosophy",
+      "Physical Education",
+      "Physics",
+      "Political Science",
+      "Political Science - Statistics",
+      "Portuguese Studies",
+      "Psychology",
+      "Regional Studies",
+      "Religion",
+      "Russian Language & Culture",
+      "Russian Literature & Culture",
+      "Slavic (Non-Russian) Language and Culture",
+      "Slavic Studies",
+      "Sociology",
+      "Statistics",
+      "Sustainable Development",
+      "Urban Studies",
+      "Visual Arts",
+      "Women's & Gender Studies",
+      "Yiddish Studies"];
+
+    generateOptions(info,"majors" )   
 
 })

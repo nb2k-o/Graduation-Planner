@@ -53,32 +53,6 @@ $(document).ready(function(){
     }
     getPlan(id)
 
-
-    // const init = function(){
-    //     var id = sessionStorage.getItem('currentplan');
-    //     // data = {
-    //     //     "title": "Chill first year",
-    //     //     "school": "Columbia College",
-    //     //     "major": "Computer Science",
-    //     //     "description": "This is a chill plan for first years",
-    //     //     "author_name": "Nigel K.",
-    //     //     "tags": "#fun #great",
-    //     //     "likes": 7,
-    //     //     "comments": 2,
-    //     //     "semester_classes": {
-    //     //         "Freshman Fall": {"Java":"CS", "LitHum":"Core", "UW": "Core", "UW": "Core", "UW": "Core"}, 
-    //     //         "Freshman Spring": {"Data Structures":"CS", "LitHum":"Core", "UW": "Core", "UW": "Core", "UW": "Core"}
-    //     //     }
-
-    //     // }
-    //     showData(data)
-    //     comments = {
-    //         "Miira E": "This plan was so great for my freshman year",
-    //         "Ola O": "This plan gave me time to apply to clubs and internships"
-    //     }
-    //     showComments(comments)
-    // }
-
     function showData(data) {
         document.getElementById('plan-name').innerHTML = data.title;
         document.getElementById('school-name').innerHTML = data.school;
@@ -116,6 +90,8 @@ $(document).ready(function(){
             table += `</table></div>`
             document.getElementById('semester-row').innerHTML += table;
         }
+
+        document.getElementById("likeInteraction").addEventListener("click", toggleLike)
         //alert(table)
         
     }
@@ -125,20 +101,6 @@ $(document).ready(function(){
         console.log("coms: " + comments);   
         const keys = Object.keys(data);
         console.log("keys: " + keys);
-        /** 
-        for (let i = 0; i < comments.length; i++) {
-            console.log(comments[i]);
-            var text = comments[i].text;
-            var author = comments[i].author_email;
-            let comment = ''
-            comment += `
-                <div class="comment">${data[key]}</div>
-                
-                <div class="comment-author">${key}</div>`;
-
-            document.getElementById('prev-comments').innerHTML += comment;
-
-        }*/
         
         for (let i = 0; i < keys.length; i++) {
             const key = keys[i];
@@ -152,9 +114,6 @@ $(document).ready(function(){
 
             document.getElementById('prev-comments').innerHTML += comment;
         }
-        
-        
-        // alert(comment)
 
     }
 
@@ -170,10 +129,42 @@ $(document).ready(function(){
         postComment(jsonData);
     }
 
-    async function postComment(jsonData){
-        const url = `http://127.0.0.1:5000/comment_plan`;
+
+    async function toggleLike() {
+
+        let currentUser = sessionStorage.getItem("currentUser");
+        jsonData = {}
+        jsonData["email"] = currentUser
+        jsonData["plan_id"] = id
+        let url = "http://127.0.0.1:5000/toggle_like_plan"
 
         fetch(url, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jsonData)
+        })
+        .then((response) =>  {
+            return response.json()
+        })
+      
+        let planurl = "http://127.0.0.1:5000/get_plan?email=" + currentUser + "&" + 
+            "plan_id=" + id;
+        
+        const planresponse = await fetch(planurl);
+        console.log(planurl);
+        var plandata = await planresponse.json();
+        console.log(plandata);
+        
+        var x = plandata.data.likes
+        document.getElementById('likes').innerHTML = x;
+        alert("purr")
+    }
+  
+    async function postComment(jsonData){
+      const url = `http://127.0.0.1:5000/comment_plan`;
+      fetch(url, {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json'
@@ -195,6 +186,7 @@ $(document).ready(function(){
             alert("Your comment could not be posted. Please try again.")
         })
     }
+  
 
     async function displayNewComment(data){
         let name = await getName(data.data.email);
@@ -216,6 +208,9 @@ $(document).ready(function(){
             getJsonData(comment);
         }
     });
+
+
+        
 
 })
 
