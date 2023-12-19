@@ -555,6 +555,11 @@ th {
   margin-left: 30px;
   position: relative;
   align-items: center;
+  overflow:scroll; 
+}
+
+.prev-comments {
+  overflow:auto; 
 }
 
 .comment-bar-container {
@@ -566,6 +571,21 @@ th {
   width: 700px;
   position: absolute;
   bottom:10px;
+}
+
+.comment-input-box {
+  padding: 8px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  width: 300px; */
+
+  /**
+  padding: 8px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  width: 300px; */
 }
 
 .comment {
