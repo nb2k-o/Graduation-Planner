@@ -6,6 +6,30 @@ $(document).ready(function(){
         window.location.href = '/landingpage';
     }
     console.log(id);
+    console.log(sessionStorage.getItem("currentUser"));
+    //let userName = await getName(sessionStorage.getItem("currentUser"));
+    //sessionStorage.setItem("currentUserName") = userName;
+
+    $('.search-bar').on('keypress',function(e) {
+        if(e.which == 13) {
+            let currentSearch = sessionStorage.setItem("currentSearch", $(".search-bar").val());
+            window.location = "search";
+        }
+    });
+
+    async function getName(currentUser) {
+        if(currentUser == null) {
+            return "none"
+        }
+        let url =
+            "http://127.0.0.1:5000/user_profile?email=" + currentUser;
+
+        const response = await fetch(url);
+
+        var data = await response.json();
+        return data.data.name
+    }
+
 
     async function getPlan(plan_id) {
         let currentUser = sessionStorage.getItem("currentUser");
@@ -13,16 +37,17 @@ $(document).ready(function(){
             "plan_id=" + plan_id;
         
         const response = await fetch(url);
-        console.log(url);
+        //console.log(url);
         var data = await response.json();
-        console.log(data);
+        //console.log(data);
         showData(data.data)
 
         let urlcom = "http://127.0.0.1:5000/get_comments?plan_id=" + plan_id;
         const responsecom = await fetch(urlcom);
-        console.log(url);
+        //console.log(url);
         var datacom = await responsecom.json();
         console.log(datacom);
+        console.log("type?:" + typeof(datacom.data));
         showComments(datacom.data)
         
     }
@@ -70,7 +95,6 @@ $(document).ready(function(){
     
         for (let i = 0; i < keys.length; i++) {
             const title = keys[i]["title"];
-            console.log(title)
             let table = ''
             table += `<div id="tableline"><text>${title}</text> 
                 <table>
@@ -83,7 +107,7 @@ $(document).ready(function(){
             for(let j = 0; j < innerkey.length; j++) {
                 const c = innerkey[j]["Class"]
                 const r = innerkey[j]["Reason"]
-                console.log(c + " " + r)
+                //console.log(c + " " + r)
                 table += `<tr>
                     <td><input type="text" class="table-entry">${c}</td>
                     <td><input type="text" class="table-entry"/>${r}</td> 
@@ -96,12 +120,16 @@ $(document).ready(function(){
         
     }
 
-    function showComments(data) {
-
+    
+    async function showComments(data) {
+        console.log("coms: " + comments);   
         const keys = Object.keys(data);
-        for (let i = 0; i < keys.length; i++) {
-            const key = keys[i];
-            
+        console.log("keys: " + keys);
+        /** 
+        for (let i = 0; i < comments.length; i++) {
+            console.log(comments[i]);
+            var text = comments[i].text;
+            var author = comments[i].author_email;
             let comment = ''
             comment += `
                 <div class="comment">${data[key]}</div>
@@ -109,11 +137,85 @@ $(document).ready(function(){
                 <div class="comment-author">${key}</div>`;
 
             document.getElementById('prev-comments').innerHTML += comment;
+
+        }*/
+        
+        for (let i = 0; i < keys.length; i++) {
+            const key = keys[i];
+            console.log(data[key]);
+            let name = await getName(data[key].author_email);
+            let comment = ''
+            comment += `
+                <div class="comment">${data[key].text}</div>
+                
+                <div class="comment-author">${name}</div><hr>`;
+
+            document.getElementById('prev-comments').innerHTML += comment;
         }
+        
         
         // alert(comment)
 
     }
+
+    function getJsonData(text) {
+        plan_id = id;
+        text = text;
+        let currentUser = sessionStorage.getItem("currentUser");
+        var jsonData = {};
+        jsonData["email"] = currentUser;
+        jsonData["plan_id"] = id;
+        jsonData["text"] = text;
+
+        postComment(jsonData);
+    }
+
+    async function postComment(jsonData){
+        const url = `http://127.0.0.1:5000/comment_plan`;
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jsonData)
+        })
+        .then((response) =>  {
+            return response.json()
+        })
+        .then((data) => {
+            if ("success" in data) {
+                console.log("new comment " +data );
+                displayNewComment(data);
+            } else {
+                alert("Your comment could not be posted. Please try again.")
+            }
+        }, (error) => {
+            console.log('There was a problem with the request:', error);
+            alert("Your comment could not be posted. Please try again.")
+        })
+    }
+
+    async function displayNewComment(data){
+        let name = await getName(data.data.email);
+        let comment = ''
+        comment += `
+            <div class="comment">${data.data.text}</div>
+            
+            <div class="comment-author">${name}</div>`;
+        document.getElementById('prev-comments').innerHTML += comment;
+    }
+
+    
+
+    // post comment
+    $('.comment-input-box').on('keypress',function(e) {
+        if(e.which == 13) {
+            let comment = $(".comment-input-box").val();
+            ('.comment-input-box').val('');
+            getJsonData(comment);
+        }
+    });
 
 })
 
